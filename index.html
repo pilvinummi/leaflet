@@ -34,12 +34,18 @@
 		id: 'mapbox.streets'
 	}).addTo(map);
 	
-	var wms = L.tileLayer.wms("http://130.233.249.20:8080/geoserver/WMS/wms", {
+	var rakennukset = L.tileLayer.wms("http://130.233.249.20:8080/geoserver/WMS/wms", {
 		layers: 'WMS:Rakennukset',
     		format: 'image/png',
     		transparent: true,
     		attribution: "Rakennukset"
 	}).addTo(map);
+	
+	L.control.layers({
+    		'Rakennukset': rakennukset,
+    		'Mapbox Light': L.mapbox.tileLayer('mapbox.light')
+	}).addTo(map);
+	
 	
     </script>
   	
