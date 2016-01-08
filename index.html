@@ -19,6 +19,13 @@
 	  position:absolute;
 	  left:0;	
     	}
+    </style>
+   
+  </head>
+    
+  <body>
+  	
+    <style>
     	.menu-ui {
   background:#fff;
   position:absolute;
@@ -57,10 +64,7 @@
         background:#3074a4;
         }
     </style>
-   
-  </head>
-    
-  <body>
+  	
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>	
     
     <nav id='menu-ui' class='menu-ui'></nav>
@@ -76,7 +80,7 @@
 			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
 		id: 'mapbox.streets'
 	}).addTo(map);
-	
+	var layers = document.getElementById('menu-ui');
 	
 	var rakennukset_wms = L.tileLayer.wms("http://130.233.249.20:8080/geoserver/WMS/wms", {
 		layers: 'WMS:Rakennukset',
@@ -96,13 +100,16 @@
     		transparent: true
 	});
 	
+	addLayer(rakennukset_wms, 'Rakennukset', 1);
+	addLayer(vaki_wms, 'Väkimäärä', 2);
+	addLayer(aurinko_wms, 'Aurinkopaneelit', 3);
+	
 	/*
 	var layers = {rakennukset_wms, vaki_wms, aurinko_wms};
 	
   	L.control.layers(layers).addTo(map);
   	*/
   	
-  	var layers = document.getElementById('menu-ui');
   	function addLayer(layer, name, zIndex) {
 	    layer
 	        .setZIndex(zIndex)
