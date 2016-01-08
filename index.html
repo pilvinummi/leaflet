@@ -33,6 +33,15 @@
 			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
 		id: 'mapbox.streets'
 	}).addTo(map);
+	
+	var mywms = L.tileLayer.wms("http://130.233.249.20:8080/geoserver/WMS/wms", {
+		layers: 'WMS:rakennukset',
+    		format: 'image/png',
+    		transparent: true,
+    		version: '1.1.0',
+    		attribution: "myattribution"
+	});
+	mywms.addTo(map);
 
     </script>
   	
