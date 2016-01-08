@@ -101,7 +101,7 @@
     		transparent: true
 	});
 	
-	L.tileLayer.betterWms("http://130.233.249.20:8080/geoserver/WMS/wms", {
+	var rakennukset_wms = L.tileLayer.betterWms("http://130.233.249.20:8080/geoserver/WMS/wms", {
         	layers: 'WMS:Rakennukset',
         	transparent: true,
         	format: 'image/png'
