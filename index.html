@@ -40,6 +40,13 @@
     		transparent: true,
     		version: '1.1.0'
 	}).addTo(map);
+	
+	document.getElementById('mywms').onclick = function () {
+    		var enable = this.className !== 'active';
+    		temperature.setOpacity(enable ? 1 : 0);
+    		this.className = enable ? 'active' : '';
+    		return false;
+	};
 
 
     </script>
