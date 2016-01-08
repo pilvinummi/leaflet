@@ -145,7 +145,7 @@
 	      var X = map.layerPointToContainerPoint(e.layerPoint).x;
 	      var Y = map.layerPointToContainerPoint(e.layerPoint).y;
 	      var URL = 'http://130.233.249.20:8080/geoserver/WMS/wms?&' + 
-	      'SERVICE=WMS&VERSION=1.1.0&REQUEST=GetFeatureInfo&LAYERS=WMS:Rakennukset_wms&QUERY_LAYERS=Rakennukset_wms&BBOX='+BBOX+'&FEATURE_COUNT=1&HEIGHT='+HEIGHT+'&WIDTH='+WIDTH+'&INFO_FORMAT=text%2Fhtml&SRS=EPSG%3A4326&X='+X+'&Y='+Y;
+	      'SERVICE=WMS&VERSION=1.1.0&REQUEST=GetFeatureInfo&LAYERS=WMS:Rakennukset_wms&BBOX='+BBOX+'&FEATURE_COUNT=1&HEIGHT='+HEIGHT+'&WIDTH='+WIDTH+'&INFO_FORMAT=text%2Fhtml&SRS=EPSG%3A4326&X='+X+'&Y='+Y;
 	      $.ajax({
 	               url:URL,
 		       datatype: "html",
