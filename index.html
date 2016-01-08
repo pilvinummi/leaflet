@@ -101,9 +101,10 @@
 	});
 	
 	addLayer(rakennukset_wms, 'Rakennukset', 1);
-	//addLayer(vaki_wms, 'Väkimäärä', 2);
+	addLayer(vaki_wms, 'Väkimäärä', 2);
 	addLayer(aurinko_wms, 'Aurinkopaneelit', 3);
 	
+	map.removeLayer(vaki_wms);
 
   	function addLayer(layer, name, zIndex) {
 	    layer
