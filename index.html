@@ -44,11 +44,9 @@
     		format: 'image/png',
     		transparent: true,
     		attribution: "Rakennukset"
-	});
-	
-	var layers = {rakennukset_wms: rakennukset};
-  	layers.rakennukset_wms.addTo(map);
-  	L.control.layers(layers).addTo(map);
+	}).addTo(map);
+
+  	L.control.layers(rakennukset_wms).addTo(map);
 	
     </script>
   	
