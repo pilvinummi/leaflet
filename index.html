@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
    
     <style>
+    	body { 
+    	  margin:0; padding:0; 
+    	}
     	#map {
     	  width:100%;
 	  height:100%;
@@ -44,7 +47,11 @@
 	}).addTo(map);
 	
 	L.control.layers({
-    		'Rakennukset': rakennukset
+    		'Rakennukset': rakennukset,
+    		'Mapbox Light': L.mapbox.tileLayer('mapbox.light')
+		}, {
+    		'Bike Stations': L.mapbox.tileLayer('examples.bike-locations'),
+    		'Bike Lanes': L.mapbox.tileLayer('examples.bike-lanes')
 	}).addTo(map);
 	
 	
