@@ -77,10 +77,9 @@
 	}).addTo(map);
 	
 	var mywms = L.tileLayer.wms("http://130.233.249.20:8080/geoserver/WMS/wms", {
-		layers: 'WMS:rakennukset',
+		layers: 'rakennukset',
     		format: 'image/png',
-    		transparent: true,
-    		version: '1.1.0'
+    		transparent: true
 	}).addTo(map);
 	
 	document.getElementById('mywms').onclick = function () {
