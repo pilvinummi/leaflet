@@ -45,8 +45,17 @@
     		transparent: true,
     		attribution: "Rakennukset"
 	}).addTo(map);
+	
+	var vaki_wms = L.tileLayer.wms("http://130.233.249.20:8080/geoserver/WMS/wms", {
+		layers: 'WMS:vaki2014_1km',
+    		format: 'image/png',
+    		transparent: true,
+    		attribution: "Rakennukset"
+	}).addTo(map);
 
-  	L.control.layers(rakennukset_wms).addTo(map);
+	var layers = {rakennukset_wms, vaki_wms};
+	
+  	L.control.layers(layers).addTo(map);
 	
     </script>
   	
