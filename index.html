@@ -35,12 +35,11 @@
 	}).addTo(map);
 	
 	var wms = L.tileLayer.wms("http://130.233.249.20:8080/geoserver/WMS/wms", {
-		layers: 'rakennukset',
+		layers: 'WMS:Rakennukset',
     		format: 'image/png',
     		transparent: true,
     		attribution: "Rakennukset"
-	}); //.addTo(map);
-	map.addLayer(wms);
+	}).addTo(map);
 	
     </script>
   	
