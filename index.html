@@ -91,7 +91,7 @@
 	var vaki_wms = L.tileLayer.wms("http://130.233.249.20:8080/geoserver/WMS/wms", {
 		layers: 'WMS:vaki2014_1km',
     		format: 'image/png',
-    		transparent: false
+    		transparent: true
 	});
 
 	var aurinko_wms = L.tileLayer.wms("http://130.233.249.20:8080/geoserver/WMS/wms", {
@@ -101,7 +101,7 @@
 	});
 	
 	addLayer(rakennukset_wms, 'Rakennukset', 1);
-	addLayer(vaki_wms, 'Väkimäärä', 2);
+	//addLayer(vaki_wms, 'Väkimäärä', 2);
 	addLayer(aurinko_wms, 'Aurinkopaneelit', 3);
 	
 
