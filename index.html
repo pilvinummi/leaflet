@@ -82,13 +82,13 @@
 		id: 'mapbox.streets'
 	}).addTo(map);
 	
-	
-	var rakennukset_wms = L.tileLayer.wms("http://130.233.249.20:8080/geoserver/WMS/wms", {
+	/*
+	//var rakennukset_wms = L.tileLayer.wms("http://130.233.249.20:8080/geoserver/WMS/wms", {
 		layers: 'WMS:Rakennukset',
     		format: 'image/png',
     		transparent: true
 	}).addTo(map);
-	
+	*/
 	var vaki_wms = L.tileLayer.wms("http://130.233.249.20:8080/geoserver/WMS/wms", {
 		layers: 'WMS:vaki2014_1km',
     		format: 'image/png',
@@ -101,7 +101,13 @@
     		transparent: true
 	});
 	
-	addLayer(rakennukset_wms, 'Rakennukset', 1);
+	L.tileLayer.betterWms("http://130.233.249.20:8080/geoserver/WMS/wms", {
+        	layers: 'WMS:Rakennukset',
+        	transparent: true,
+        	format: 'image/png'
+      	}).addTo(map);
+	
+	//addLayer(rakennukset_wms, 'Rakennukset', 1);
 	addLayer(vaki_wms, 'Väkimäärä', 2);
 	addLayer(aurinko_wms, 'Aurinkopaneelit', 3);
 	
