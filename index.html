@@ -126,12 +126,6 @@
 	}); 
 	
 	
-	pointToLayer: function(feature,latlng){
-	  	var marker = L.marker(latlng,{icon: ratIcon});
-	  	marker.bindPopup(feature.properties.viheralue_id + '<br/>' + feature.properties.puiston_nimi);
-	  	return marker;
-	}
-	
 	
 	
 	
