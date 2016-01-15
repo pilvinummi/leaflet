@@ -71,7 +71,7 @@
     <div id="map"></div>
     
     <script>
-    	
+    	//CORS
     	(function() {
 	  var cors_api_host = 'cors-anywhere.herokuapp.com';
 	  var cors_api_url = 'https://' + cors_api_host + '/';
@@ -90,6 +90,8 @@
 	})();
     	
     
+    
+    	//BASEMAP
   	var map = L.map('map').setView([60.1708, 24.9375], 13);
   	var layers = document.getElementById('menu-ui');
   	
@@ -102,23 +104,29 @@
 	}).addTo(map);
 	
 	
+	
+	//WFS
 	var viheralueet = new L.GeoJSON();
 	function getJson(data) {
 		console.log(data)
 		viheralueet.addData(data); 
 	}
-
 	var URL = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:hkr_ylre_viheralue&srsName=EPSG:4326&format=text/javascript&outputFormat=json&format_options=callback:getJson";
-	
 	$.ajax({ 
         	url: URL,
 		datatype:"json",
 		jsonCallback: 'getJson',
 		success: getJson
 	}); 
-        //url: "http://phantom:1515/geoserver/img_spatial/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=img_spatial:boat_positions&maxFeatures=50&outputFormat=json&format_options=callback:getJson",
-        map.addLayer(viheralueet);
+        //map.addLayer(viheralueet);
 	
+	
+	
+	
+	
+	
+	
+	//WMS
 	var rakennukset_wms = L.tileLayer.wms("http://130.233.249.20:8080/geoserver/WMS/wms", {
 		layers: 'WMS:Rakennukset',
     		format: 'image/png',
@@ -137,9 +145,13 @@
     		transparent: true
 	});
 	
+	
+	
+	//LAYERTOGGLER
 	addLayer(rakennukset_wms, 'Rakennukset', 1);
 	addLayer(vaki_wms, 'Väkimäärä', 2);
 	addLayer(aurinko_wms, 'Aurinkopaneelit', 3);
+	addLayer(viheralueet, 'Viheralueet', 4);
 	
 	map.removeLayer(vaki_wms);
 	map.removeLayer(aurinko_wms);
