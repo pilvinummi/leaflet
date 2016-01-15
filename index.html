@@ -101,15 +101,14 @@
 	}).addTo(map);
 	
 
-	var owsrootUrl = 'https://130.233.249.20:8080/geoserver/wfs';
+	var owsrootUrl = 'https://130.233.249.20:8080/geoserver/';
 
 	var defaultParameters = {
-	    service : 'WFS',
+	    service : 'wfs',
 	    version : '1.1.0',
 	    request : 'GetFeature',
 	    typeName : 'web_map_project:hkr_ylre_viheralue',
-	    outputFormat : 'text/javascript',
-	    format_options : 'callback:getJson',
+	    outputFormat : 'application/json',
 	    srsName : 'EPSG:4326'
 	};
 	
