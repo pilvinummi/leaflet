@@ -106,8 +106,8 @@
 	
 	
 	//WFS
-	var URL1 = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:hkr_ylre_viheralue&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
-	var URL2 = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=WMS:wfs_vaki2014_1km_kp&srsName=EPSG:4326&format=text/javascript&outputFormat=json&format_options=callback:getJson";
+	//var URL1 = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:hkr_ylre_viheralue&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
+	//var URL2 = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=WMS:wfs_vaki2014_1km_kp&srsName=EPSG:4326&format=text/javascript&outputFormat=json&format_options=callback:getJson";
 	//format=text/javascript
 	//var viheralueet = new L.GeoJSON();
 	//var vaki = new L.GeoJSON();
@@ -117,6 +117,23 @@
 	//	viheralueet.addData(data);
 		//vaki.addData(data);
 	//}
+	
+	var owsrootUrl = 'https://130.233.249.20:8080/geoserver/ows';
+    
+    	var defaultParameters = {
+	        service : 'WFS',
+	        version : '2.0',
+	        request : 'GetFeature',
+	        typeName : 'web_map_project:hkr_ylre_viheralue',
+	        outputFormat : 'json',
+	        format_options : 'callback:getJson',
+	        SrsName : 'EPSG:4326'
+    	};
+
+    	var parameters = L.Util.extend(defaultParameters);
+	var URL = owsrootUrl + L.Util.getParamString(parameters);
+	
+	var DogExerciseAreas = null;
 	
 	var ajax = $.ajax({ 
         	url: URL1,
@@ -145,7 +162,7 @@
 	
 	
 	
-	
+	/*
 	
 	//WMS
 	var rakennukset_wms = L.tileLayer.wms("http://130.233.249.20:8080/geoserver/WMS/wms", {
@@ -238,7 +255,7 @@
 	        }
 	    });
 	}
-	
+	*/
     </script>
   </body>
 </html>
