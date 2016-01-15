@@ -106,9 +106,11 @@
 	
 	
 	//WFS
-	var URL1 = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:hkr_ylre_viheralue&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
-	var URL2 = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:hkr_ylre_viheralue&srsName=EPSG:4326&format=ormat=text/javascript&outputFormat=json&format_options=callback:getJson";
+	var popup_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:hkr_ylre_viheralue&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
+	var karttataso_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:hkr_ylre_viheralue&srsName=EPSG:4326&format=ormat=text/javascript&outputFormat=json&format_options=callback:getJson";
+	
 	//var URL2 = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=WMS:wfs_vaki2014_1km_kp&srsName=EPSG:4326&format=text/javascript&outputFormat=json&format_options=callback:getJson";
+	
 	var viheralueet = new L.GeoJSON();
 	//var vaki = new L.GeoJSON();
 	
@@ -118,37 +120,36 @@
 		//vaki.addData(data);
 	}
 	$.ajax({ 
-        	url: URL2,
+        	url: karttataso_wfs,
 		datatype:"json",
 		jsonCallback: 'getJson',
 		success: getJson
 	});
 	
 
-	var DogExerciseAreas = null;
+	var areas = null;
 	
 	var ajax = $.ajax({ 
-        	url: URL1,
+        	url: popup_wfs,
 		datatype:"json",
 		jsonCallback: 'getJson',
-		//success: getJson
 		success : function (response) {
-        	DogExerciseAreas = L.geoJson(response, {
-                style: function (feature) {
-                    return {
-                        stroke: false,
+        	  areas = L.geoJson(response, {
+                    style: function (feature) {
+                      return {
+                        stroke: true,
                         fillColor: 'FFFFFF',
                         fillOpacity: 0
-                    };
-                },
-                onEachFeature: function (feature, layer) {
-                    popupOptions = {maxWidth: 200};
-                    layer.bindPopup("<b>Greenery id:</b> " + feature.properties.viheralue_id +
+                      };
+                    },
+                    onEachFeature: function (feature, layer) {
+                      popupOptions = {maxWidth: 200};
+                      layer.bindPopup("<b>Greenery id:</b> " + feature.properties.viheralue_id +
                         "<br><b>Name of the park: </b>" + feature.properties.puiston_nimi
                         ,popupOptions);
+                    }
+                  }).addTo(map);
                 }
-            }).addTo(map);
-        }
 	}); 
 	
 	
