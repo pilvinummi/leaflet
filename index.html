@@ -71,7 +71,7 @@
     <div id="map"></div>
     
     <script>
-    	/*
+    	
     	(function() {
 	  var cors_api_host = 'cors-anywhere.herokuapp.com';
 	  var cors_api_url = 'https://' + cors_api_host + '/';
@@ -88,7 +88,7 @@
 	    return open.apply(this, args);
 	  };
 	})();
-    	*/
+    	
     
   	var map = L.map('map').setView([60.1708, 24.9375], 13);
   	var layers = document.getElementById('menu-ui');
@@ -102,13 +102,12 @@
 	}).addTo(map);
 	
 	
-	var myLayer = new L.geoJson().addTo(map);
-
-	function loadGeoJson() {myLayer.addGeoJson(data); 
+	var viheralueet = new L.geoJson().addTo(map);
+	function loadGeoJson() {viheralueet.addGeoJson(data); 
 	}
 
-	var geoJsonUrl = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:hkr_ylre_viheralue&srsName=EPSG:4326&format=text/javascript&outputFormat=json&format_options=callback:loadGeoJson";
-
+	var geoJsonUrl = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:hkr_ylre_viheralue&srsName=EPSG:4326&format=application/json&outputFormat=json&format_options=callback:loadGeoJson";
+	//text/javascript
 	$.ajax({ 
         	url: geoJsonUrl,
 		datatype:"jsonp"
