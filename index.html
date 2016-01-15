@@ -4,11 +4,7 @@
     <meta charset="UTF-8">
     <title>Leaflet</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <script src='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.js'></script>
-    <link href='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.css' rel='stylesheet' />
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-   
+  
     <style>
       body { 
         margin:0; padding:0; 
@@ -61,7 +57,7 @@
   
     <script>
     
-      //CORS
+      //CORS:n aktivointi, mahdollistaa pyyntöjen tekemisen verkkopiirin ulkopuolelta (domain)
     	(function() {
 	  var cors_api_host = 'cors-anywhere.herokuapp.com';
 	  var cors_api_url = 'https://' + cors_api_host + '/';
@@ -96,7 +92,7 @@
 	
 	
 	
-	//WFS
+	//WFS-tasot
 	var popup_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:hkr_ylre_viheralue&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
 	var karttataso_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:hkr_ylre_viheralue&srsName=EPSG:4326&format=ormat=text/javascript&outputFormat=json&format_options=callback:getJson";
 	
@@ -151,7 +147,8 @@
 	}); 
 	
 	
-	//WMS
+	
+	//WMS-tasot
 	var rakennukset_wms = L.tileLayer.wms("http://130.233.249.20:8080/geoserver/WMS/wms", {
 		layers: 'WMS:Rakennukset',
     		format: 'image/png',
@@ -209,6 +206,9 @@
 	    
 	    layers.appendChild(link);
 	}
+	
+	
+	//WMS-tason popup-scripti
 	/*
 	ms_url="http://130.233.249.20:8080/geoserver/WMS/wms";
 	map.addEventListener('click', Identify);
@@ -251,8 +251,17 @@
     
   <body onload="init()">  
     
-    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>	
+    <!-- MapBox scriptit -->
+    <script src='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.css' rel='stylesheet' />
+    
+    <!-- Leaflet scriptit -->
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+    
+    <!-- jQuery scriptit -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    
     
     <nav id='menu-ui' class='menu-ui'></nav>
     <div id="map"></div>
