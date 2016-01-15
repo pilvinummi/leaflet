@@ -101,16 +101,16 @@
 	}).addTo(map);
 	
 
-	var owsrootUrl = 'https://130.233.249.20:8080/geoserver/ows';
+	var owsrootUrl = 'https://130.233.249.20:8080/geoserver/wfs';
 
 	var defaultParameters = {
 	    service : 'WFS',
-	    version : '2.0',
+	    version : '1.1.0',
 	    request : 'GetFeature',
 	    typeName : 'web_map_project:hkr_ylre_viheralue',
 	    outputFormat : 'text/javascript',
 	    format_options : 'callback:getJson',
-	    SrsName : 'EPSG:4326'
+	    srsName : 'EPSG:4326'
 	};
 	
 	var parameters = L.Util.extend(defaultParameters);
