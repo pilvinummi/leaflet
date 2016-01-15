@@ -109,24 +109,28 @@
 	var URL1 = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:hkr_ylre_viheralue&srsName=EPSG:4326&format=text/javascript&outputFormat=json&format_options=callback:getJson";
 	var URL2 = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=WMS:wfs_vaki2014_1km_kp&srsName=EPSG:4326&format=text/javascript&outputFormat=json&format_options=callback:getJson";
 	
-	//var viheralueet = new L.GeoJSON();
-	var vaki = new L.GeoJSON();
+	var viheralueet = new L.GeoJSON();
+	//var vaki = new L.GeoJSON();
 	
 	function getJson(data) {
 		console.log(data)
-		//viheralueet.addData(data);
-		vaki.addData(data);
+		viheralueet.addData(data);
+		//vaki.addData(data);
 	}
 	
 	$.ajax({ 
-        	url: URL2,
+        	url: URL1,
 		datatype:"json",
 		jsonCallback: 'getJson',
 		success: getJson
 	}); 
 	
 	
-	
+	pointToLayer: function(feature,latlng){
+	  	var marker = L.marker(latlng,{icon: ratIcon});
+	  	marker.bindPopup(feature.properties.viheralue_id + '<br/>' + feature.properties.puiston_nimi);
+	  	return marker;
+	}
 	
 	
 	
@@ -156,8 +160,8 @@
 	addLayer(rakennukset_wms, 'Rakennukset', 1);
 	addLayer(vaki_wms, 'Väkimäärä', 2);
 	addLayer(aurinko_wms, 'Aurinkopaneelit', 3);
-	//addLayer(viheralueet, 'Viheralueet', 4);
-	addLayer(vaki, 'Väestöruudukko', 5);
+	addLayer(viheralueet, 'Viheralueet', 4);
+	//addLayer(vaki, 'Väestöruudukko', 5);
 	
 	map.removeLayer(vaki_wms);
 	map.removeLayer(aurinko_wms);
