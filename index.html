@@ -116,11 +116,14 @@
 		console.log(data)
 		vaki.addData(data);
 	}
-	$.ajax({ 
-        	url: vaki_wfs,
-		datatype:"json",
-		jsonCallback: 'getJson',
-		success: getJson
+	$.ajax({
+    	type: "POST",
+    	url: 'vaki_wfs',
+    	dataType: 'json',
+    	success: function (response) {
+        geojsonLayer = L.geoJson(response).addTo(map);
+        map.fitBounds(geojsonLayer.getBounds());
+    	}
 	});
 	
 	/*
@@ -185,7 +188,7 @@
 	addLayer(vaki_wms, 'Väkimäärä', 2);
 	addLayer(aurinko_wms, 'Aurinkopaneelit', 3);
 	//addLayer(viheralueet, 'Viheralueet', 4);
-	addLayer(vaki, 'Väestöruudukko', 5);
+	//addLayer(vaki, 'Väestöruudukko', 5);
 	
 	map.removeLayer(vaki_wms);
 	map.removeLayer(aurinko_wms);
