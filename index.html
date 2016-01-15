@@ -118,7 +118,7 @@
 	}
 	$.ajax({
     	type: "POST",
-    	url: 'vaki_wfs',
+    	url: vaki_wfs,
     	dataType: 'json',
     	success: function (response) {
         geojsonLayer = L.geoJson(response).addTo(map);
