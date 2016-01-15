@@ -118,7 +118,7 @@
 		//vaki.addData(data);
 	}
 	
-	$.ajax({ 
+	var ajax = $.ajax({ 
         	url: URL1,
 		datatype:"json",
 		jsonCallback: 'getJson',
@@ -134,8 +134,8 @@
                 },
                 onEachFeature: function (feature, layer) {
                     popupOptions = {maxWidth: 200};
-                    layer.bindPopup("<b>Site name:</b> " + feature.properties.sitename +
-                        "<br><b>Dog Exercise: </b>" + feature.properties.dog_exercise +
+                    layer.bindPopup("<b>Site name:</b> " + feature.properties.viheralue_id +
+                        "<br><b>Dog Exercise: </b>" + feature.properties.puiston_nimi +
                         "<br><br>Please ensure that tidy up after your dog. Dogs must be kept under effective control at all times."
                         ,popupOptions);
                 }
