@@ -149,8 +149,10 @@
                     },
                     onEachFeature: function (feature, layer) {
                       popupOptions = {maxWidth: 200};
-                      layer.bindPopup("<b>Greenery id:</b> " + feature.properties.viheralue_id +
-                        "<br><b>Name of the park: </b>" + feature.properties.puiston_nimi
+                      layer.bindPopup("<b>Viheralueen tunnus: </b> " + feature.properties.viheralue_id +
+                        "<br><b>Nimi: </b>" + feature.properties.puiston_nimi +
+                        "<br><b>Kayttötarkoitus: </b>" + feature.properties.kayttotarkoitus + 
+                        "<br><b>Pinta-ala: </b>" + feature.properties.pinta_ala
                         ,popupOptions);
                     }
                   }).addTo(map);
