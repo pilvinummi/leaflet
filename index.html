@@ -122,7 +122,25 @@
         	url: URL1,
 		datatype:"json",
 		jsonCallback: 'getJson',
-		success: getJson
+		//success: getJson
+		success : function (response) {
+        	DogExerciseAreas = L.geoJson(response, {
+                style: function (feature) {
+                    return {
+                        stroke: false,
+                        fillColor: 'FFFFFF',
+                        fillOpacity: 0
+                    };
+                },
+                onEachFeature: function (feature, layer) {
+                    popupOptions = {maxWidth: 200};
+                    layer.bindPopup("<b>Site name:</b> " + feature.properties.sitename +
+                        "<br><b>Dog Exercise: </b>" + feature.properties.dog_exercise +
+                        "<br><br>Please ensure that tidy up after your dog. Dogs must be kept under effective control at all times."
+                        ,popupOptions);
+                }
+            }).addTo(map);
+        }
 	}); 
 	
 	
