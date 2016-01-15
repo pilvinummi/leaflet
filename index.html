@@ -10,21 +10,16 @@
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
    
     <style>
-    	body { 
-    	  margin:0; padding:0; 
-    	}
-    	#map {
-    	  width:100%;
-	  height:100%;
-	  position:absolute;
-	  left:0;	
-    	}
-    </style>
-  </head>
-   
-   
-  <body>
-    <style>
+      body { 
+        margin:0; padding:0; 
+      }
+      #map {
+        width:100%;
+	height:100%;
+	position:absolute;
+	left:0;	
+      }
+      
       .menu-ui {
  	background:#fff;
   	position:absolute;
@@ -63,15 +58,10 @@
         background:#3074a4;
       }
     </style>
-  	
-    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>	
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    
-    <nav id='menu-ui' class='menu-ui'></nav>
-    <div id="map"></div>
-    
+  
     <script>
-    	//CORS
+    
+      //CORS
     	(function() {
 	  var cors_api_host = 'cors-anywhere.herokuapp.com';
 	  var cors_api_url = 'https://' + cors_api_host + '/';
@@ -88,9 +78,10 @@
 	    return open.apply(this, args);
 	  };
 	})();
+    
+    
+      function init() {
     	
-    
-    
     	//BASEMAP
   	var map = L.map('map').setView([60.1708, 24.9375], 13);
   	var layers = document.getElementById('menu-ui');
@@ -158,9 +149,6 @@
                   }).addTo(map);
                 }
 	}); 
-	
-	
-	
 	
 	
 	//WMS
@@ -255,6 +243,19 @@
 	    });
 	}
 	*/
+	
+      }
+      
     </script>
+  </head>  
+    
+  <body onload="init()">  
+    
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>	
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    
+    <nav id='menu-ui' class='menu-ui'></nav>
+    <div id="map"></div>
+    
   </body>
 </html>
