@@ -117,8 +117,14 @@
     	  dataType: 'json',
     	  jsonCallback: 'getJson',
     	  success: function (response) {
-            geojsonLayer = L.geoJson(response).addTo(map);
-            map.fitBounds(geojsonLayer.getBounds());
+            geojsonLayer = L.geoJson(response, {
+            	style: function (feature) {
+            		return {
+            			radius: 3
+            		};
+            	}
+            }).addTo(map);
+            //map.fitBounds(geojsonLayer.getBounds());
     	  }
 	});
 	
