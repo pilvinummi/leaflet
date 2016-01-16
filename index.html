@@ -110,7 +110,7 @@
 		success: getJson
 	});
 	
-	
+	/*
 	var vaki = new L.GeoJSON();
 	function getJson(data) {
 		console.log(data)
@@ -124,7 +124,7 @@
         map.fitBounds(geojsonLayer.getBounds());
     	}
 	});
-	
+	*/
 	
 	var areas = null;
 	var ajax = $.ajax({ 
@@ -187,7 +187,7 @@
 	addLayer(vaki_wms, 'Väkimäärä', 2);
 	addLayer(aurinko_wms, 'Aurinkopaneelit', 3);
 	addLayer(viheralueet, 'Viheralueet', 4);
-	addLayer(vaki, 'Väestöruudukko', 5);
+	//addLayer(vaki, 'Väestöruudukko', 5);
 	
 	map.removeLayer(vaki_wms);
 	map.removeLayer(aurinko_wms);
