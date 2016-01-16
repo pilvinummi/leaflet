@@ -116,13 +116,14 @@
     	  url: vaki_wfs,
     	  dataType: 'json',
     	  jsonCallback: 'getJson',
-    	  success: function (response) {
+    	  success : function (response) {
             geojsonLayer = L.geoJson(response, {
-            	style: function (feature) {
-            		return {
-            			radius: 3
-            		};
-            	}
+              style: function (feature) {
+            	return {
+            	  radius: 3,
+            	  color: "#000"
+            	};
+              }
             }).addTo(map);
             //map.fitBounds(geojsonLayer.getBounds());
     	  }
