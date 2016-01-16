@@ -95,7 +95,7 @@
 	//WFS-tasot
 	var viheralueet_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:hkr_ylre_viheralue&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
 	//var karttataso_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:hkr_ylre_viheralue&srsName=EPSG:4326&format=ormat=text/javascript&outputFormat=json&format_options=callback:getJson";
-	//var vaki_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=WMS:wfs_vaki2014_1km_kp&srsName=EPSG:4326&format=text/javascript&outputFormat=json&format_options=callback:getJson";
+	var vaki_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=WMS:wfs_vaki2014_1km_kp&srsName=EPSG:4326&format=text/javascript&outputFormat=json&format_options=callback:getJson";
 	
 	/*
 	var viheralueet = new L.GeoJSON();
@@ -111,21 +111,15 @@
 	});
 	*/
 	
-	/*
-	var vaki = new L.GeoJSON();
-	function getJson(data) {
-		console.log(data)
-		vaki.addData(data);
-	}
-	$.ajax({
-    	url: vaki_wfs,
-    	dataType: 'json',
-    	success: function (response) {
-        geojsonLayer = L.geoJson(response).addTo(map);
-        map.fitBounds(geojsonLayer.getBounds());
-    	}
+	var vaki = $.ajax({
+    	  url: vaki_wfs,
+    	  dataType: 'json',
+    	  success: function (response) {
+            geojsonLayer = L.geoJson(response).addTo(map);
+            map.fitBounds(geojsonLayer.getBounds());
+    	  }.addTo(map)
 	});
-	*/
+	
 	
 	var areas = null;
 	var ajax = $.ajax({ 
@@ -154,7 +148,7 @@
                         "<br><b>Pinta-ala: </b>" + feature.properties.pinta_ala
                         ,popupOptions);
                     }
-                  });//.addTo(map);
+                  }).addTo(map);
                 }
 	}); 
 	
@@ -187,7 +181,7 @@
 	addLayer(rakennukset_wms, 'Rakennukset', 1);
 	addLayer(vaki_wms, 'Väkimäärä', 2);
 	addLayer(aurinko_wms, 'Aurinkopaneelit', 3);
-	addLayer(ajax, 'Viheralueet', 4);
+	//addLayer(ajax, 'Viheralueet', 4);
 	//addLayer(viheralueet, 'Viheralueet', 4);
 	//addLayer(vaki, 'Väestöruudukko', 5);
 	
