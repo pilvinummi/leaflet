@@ -154,7 +154,7 @@
                         "<br><b>Pinta-ala: </b>" + feature.properties.pinta_ala
                         ,popupOptions);
                     }
-                  }).addTo(map);
+                  });//.addTo(map);
                 }
 	}); 
 	
@@ -189,6 +189,7 @@
 	addLayer(aurinko_wms, 'Aurinkopaneelit', 3);
 	//addLayer(viheralueet, 'Viheralueet', 4);
 	//addLayer(vaki, 'Väestöruudukko', 5);
+	addLayer(areas, 'Viheralueet', 4);
 	
 	map.removeLayer(vaki_wms);
 	map.removeLayer(aurinko_wms);
