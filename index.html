@@ -111,7 +111,7 @@
 	});
 	*/
 	
-	
+	geojsonLayer = null;
 	var vaki = $.ajax({
     	  url: vaki_wfs,
     	  dataType: 'json',
@@ -119,7 +119,7 @@
     	  success: function (response) {
             geojsonLayer = L.geoJson(response).addTo(map);
             map.fitBounds(geojsonLayer.getBounds());
-    	  }.addTo(map)
+    	  }
 	});
 	
 	
