@@ -111,6 +111,7 @@
 	});
 	*/
 	
+	
 	geojsonLayer = null;
 	var vaki = $.ajax({
     	  url: vaki_wfs,
@@ -128,7 +129,8 @@
     	  }
 	});
 	
-	//map.fitBounds(geojsonLayer.getBounds());
+	
+	map.fitBounds(geojsonLayer.getBounds());
 	
 	var areas = null;
 	var ajax = $.ajax({ 
