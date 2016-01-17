@@ -169,7 +169,7 @@
 	}
 	*/
 
-
+	/*
 	var boundaries = new L.WFS({
 	    url: 'http://130.233.249.20:8080/geoserver/ows',
 	    typeNS: 'web_map_project',
@@ -184,8 +184,33 @@
 	        //.on('load', function () {
 	        //    map.fitBounds(boundaries);
 	        //})
+	*/
 	
-	/*
+	
+	var wfst = new L.WFST({
+	    url: 'http://130.233.249.20:8080/geoserver/ows',
+	    typeNS: 'web_map_project',
+	    typeName: 'vaesto_vaki2014_1km_kp',
+	    style: {
+	        color: 'blue',
+	        weight: 2
+	    }
+	}).addTo(map).once('load', function () {
+	            map.fitBounds(wfst);
+	            wfst.enableEdit();
+	        });
+	
+	map.on('editable:created', function (e) {
+	    wfst.addLayer(e.layer);
+	});
+	
+	map.on('editable:editing', function (e) {
+	    wfst.editLayer(e.layer);
+	});
+	
+	
+	
+	
 	var areas = null;
 	var ajax = $.ajax({ 
         	url: viheralueet_wfs,
@@ -216,7 +241,7 @@
                   }).addTo(map);
                 }
 	}); 
-	*/
+	
 	
 	
 	
