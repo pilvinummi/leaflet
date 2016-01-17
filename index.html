@@ -195,19 +195,12 @@
         	  areas1 = L.geoJson(response, {
                     style: function (feature) {
                       return {
-                        stroke: true,
-                        weight: 1,
-                        //"stroke-width": 0.5
-                	opacity: 1,
-                	color: 'black'
-                	//dashArray: '3',
-                	//fillOpacity: 0.7,
-                	//fillColor: '#000'
                       };
                     },
                     onEachFeature: function (feature, layer) {
                       popupOptions = {maxWidth: 200};
-                      layer.bindPopup("<b>Viheralueen tunnus: </b> " + feature.properties.kunta ,popupOptions);
+                      layer.bindPopup("<b>Viheralueen tunnus: </b> " + feature.properties.kunta
+                        ,popupOptions);
                     }
                   }).addTo(map);
                 }
