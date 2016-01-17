@@ -116,14 +116,28 @@
 
 	var start_at_zoom = 8;
 	
-	var viheralueet = new L.GeoJSON();
+	function onEachFeature(feature, layer) {
+	    // does this feature have a property named dz?
+	    if (feature.properties && feature.properties.dz) {
+	        layer.bindPopup(feature.properties.dz);
+	    }
+	}
+
+	var featureLayer = new L.GeoJSON(
+	null, {
+	    onEachFeature: onEachFeature
+	}).addTo(map);
 	load_wfs();
 	
 	function loadGeoJson(data) {
-	    // console.log(data);
-	    viheralueet.clearLayers();
-	    viheralueet.addData(data);
+	   // console.log(data);
+	    $("#total").html(data.features.length);
+	    featureLayer.clearLayers();
+	
+	    featureLayer.addData(data);
+	
 	}
+	
 	
 	map.on('moveend', load_wfs);
 	
