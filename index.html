@@ -95,37 +95,70 @@
 	//WFS-tasot
 	var viheralueet_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:hkr_ylre_viheralue&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
 	//var karttataso_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:hkr_ylre_viheralue&srsName=EPSG:4326&format=ormat=text/javascript&outputFormat=json&format_options=callback:getJson";
-	var vaki_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:vaesto_vaki2014_1km&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
-	
-	/*
-	var viheralueet = new L.GeoJSON();
-	function getJson(data) {
-		//console.log(data)
-		viheralueet.addData(data);
+	//var vaki_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:vaesto_vaki2014_1km&srsName=EPSG:4326&format=json&outputFormat=text/javascript&format_options=callback:getJson";
+
+	var start_at_zoom = 8;
+
+	function onEachFeature(feature, layer) {
+	    // does this feature have a property named dz?
+	    if (feature.properties && feature.properties.dz) {
+	        layer.bindPopup(feature.properties.dz);
+	    }
 	}
-	$.ajax({ 
-        	url: karttataso_wfs,
-		datatype:"json",
-		jsonCallback: 'getJson',
-		success: getJson
-	});
-	*/
 	
+	var featureLayer = new L.GeoJSON(
+	    null, {
+	        onEachFeature: onEachFeature
+	    }).addTo(map);
+	load_wfs();
 	
-	geojsonLayer = null;
-	var vaki = $.ajax({
-    	  url: vaki_wfs,
-    	  dataType:"json",
-    	  jsonCallback: 'getJson',
-    	  success : function (response) {
-            geojsonLayer = L.geoJson(response, {
-              style: function (feature) {
-            	return {
-            	};
-              }
-            }).addTo(map);
-    	  }
-	});
+	function loadGeoJson(data) {
+	    // console.log(data);
+	    featureLayer.clearLayers();
+	    featureLayer.addData(data);
+	}
+	
+	map.on('moveend', load_wfs);
+	
+	function load_wfs() {
+	    if (map.getZoom() > start_at_zoom) {
+	        var geoJsonUrl = 'http://130.233.249.20:8080/geoserver/wfs';
+	        var defaultParameters = {
+		    service: 'WFS',
+		    version: '1.1.0',
+		    request: 'GetFeature',
+		    typeName: 'web_map_project:vaesto_vaki2014_1km',
+		    maxFeatures: 6505,
+		    outputFormat: 'text/javascript', 
+		    format_options: 'callback: getJson',
+		    srsName:'EPSG:4326'
+	        };
+	
+	        var customParams = {
+	            bbox: map.getBounds().toBBoxString()
+	        };
+	        var parameters = L.Util.extend(defaultParameters, customParams);
+	        console.log(geoJsonUrl + L.Util.getParamString(parameters));
+	
+	        $.ajax({
+	            jsonp: false,
+	            url: geoJsonUrl + L.Util.getParamString(parameters),
+	            dataType: 'jsonp',
+	            jsonpCallback: 'getJson',
+	            success: loadGeoJson
+	        });
+	
+	    } else {
+	        alert("please zoom in to see the polygons!");
+	        featureLayer.clearLayers();
+	    }
+	}
+
+
+
+
+
+
 	
 	
 	var areas = null;
