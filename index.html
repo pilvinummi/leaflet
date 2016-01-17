@@ -112,8 +112,8 @@
 	});
 	*/
 
-	/*
-	var start_at_zoom = 8;
+	
+	//var start_at_zoom = 8;
 	
 	function onEachFeature(feature, layer) {
 	    // does this feature have a property named dz?
@@ -140,12 +140,12 @@
 	map.on('moveend', load_wfs);
 	
 	function load_wfs() {
-	    if (map.getZoom() > start_at_zoom) {
+	    //if (map.getZoom() > start_at_zoom) {
 	        var geoJsonUrl = 'http://130.233.249.20:8080/geoserver/wfs';
 	        var defaultParameters = {
 		    service: 'WFS',
 		    format: 'json',
-		    version: '1.1.0',
+		    version: '1.0.0',
 		    request: 'GetFeature',
 		    typeName: 'web_map_project:vaesto_vaki2014_1km_kp',
 		    //maxFeatures: 6505,
@@ -154,14 +154,14 @@
 		    srsName:'EPSG:4326'
 	        };
 	
-	        var customParams = {
-	            bbox: map.getBounds().toBBoxString()
-	        };
-	        var parameters = L.Util.extend(defaultParameters, customParams);
+	        //var customParams = {
+	        //    bbox: map.getBounds().toBBoxString()
+	        //};
+	        var parameters = L.Util.extend(defaultParameters); //, customParams
 	        console.log(geoJsonUrl + L.Util.getParamString(parameters));
 	
 	        $.ajax({
-	            jsonp: false,
+	            //jsonp: false,
 	            url: geoJsonUrl + L.Util.getParamString(parameters),
 	            dataType: 'json',
 	            jsonpCallback: 'getJson',
@@ -170,25 +170,7 @@
 	
 	    }
 	}
-	*/
-
-	var areas1 = null;
-	var ajax = $.ajax({ 
-        	url: vaki_wfs,
-		datatype:"json",
-		jsonCallback: 'getJson',
-		success : function (response) {
-        	  areas1 = L.geoJson(response, {
-                    //style: function (feature) {
-                    //  return {
-                        //stroke: true
-                        //radius: 1
-                    //  };
-                    //}
-                  }).addTo(map);
-                }
-	});
-
+	
 
 
 	
