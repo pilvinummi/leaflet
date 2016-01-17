@@ -175,14 +175,15 @@
 	    typeNS: 'pesonet1.github.io/Leaflet',
 	    typeName: 'vaesto_vaki2014_1km_kp',
 	    crs: L.CRS.EPSG4326,
-	    style: {
-	        color: 'blue',
-	        weight: 2
-	    }
+	    geometryField: 'the_geom'
+	    //style: {
+	    //    color: 'blue',
+	    //    weight: 2
+	    //}
 	}).addTo(map)
-	        .on('load', function () {
-	            map.fitBounds(boundaries);
-	        })
+	        //.on('load', function () {
+	        //    map.fitBounds(boundaries);
+	        //})
 	
 	
 	var areas = null;
