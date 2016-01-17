@@ -99,10 +99,6 @@
 
 	var start_at_zoom = 8;
 	
-	var featureLayer = new L.GeoJSON(
-	    null, {
-	        onEachFeature: onEachFeature
-	    }).addTo(map);
 	load_wfs();
 	
 	function loadGeoJson(data) {
