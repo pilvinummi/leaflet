@@ -111,7 +111,7 @@
 	});
 	*/
 
-	
+	/*
 	//var start_at_zoom = 8;
 	
 	function onEachFeature(feature, layer) {
@@ -167,9 +167,23 @@
 	        });
 	    //}
 	}
+	*/
+
+
+	var boundaries = new L.WFS({
+	    url: 'http://130.233.249.20:8080/geoserver/ows',
+	    typeNS: 'pesonet1.github.io/Leaflet',
+	    typeName: 'vaesto_vaki2014_1km_kp',
+	    crs: L.CRS.EPSG4326,
+	    style: {
+	        color: 'blue',
+	        weight: 2
+	    }
+	}).addTo(map)
+	        .on('load', function () {
+	            map.fitBounds(boundaries);
+	        })
 	
-
-
 	
 	var areas = null;
 	var ajax = $.ajax({ 
@@ -322,6 +336,8 @@
     <!-- jQuery scriptit -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     
+    
+    <script src="https://rawgithub.com/pesonet1/Leaflet/WFS.js"
     
     <nav id='menu-ui' class='menu-ui'></nav>
     <div id="map"></div>
