@@ -113,7 +113,7 @@
 	*/
 
 	
-	//var start_at_zoom = 8;
+	var start_at_zoom = 8;
 	
 	function onEachFeature(feature, layer) {
 	    // does this feature have a property named dz?
@@ -129,8 +129,7 @@
 	load_wfs();
 	
 	function loadGeoJson(data) {
-	   // console.log(data);
-	    $("#total").html(data.features.length);
+	    //$("#total").html(data.features.length);
 	    featureLayer.clearLayers();
 	
 	    featureLayer.addData(data);
@@ -140,7 +139,7 @@
 	map.on('moveend', load_wfs);
 	
 	function load_wfs() {
-	    //if (map.getZoom() > start_at_zoom) {
+	    if (map.getZoom() > start_at_zoom) {
 	        var geoJsonUrl = 'http://130.233.249.20:8080/geoserver/wfs';
 	        var defaultParameters = {
 		    service: 'WFS',
@@ -154,10 +153,10 @@
 		    srsName:'EPSG:4326'
 	        };
 	
-	        //var customParams = {
-	        //    bbox: map.getBounds().toBBoxString()
-	        //};
-	        var parameters = L.Util.extend(defaultParameters); //, customParams
+	        var customParams = {
+	            bbox: map.getBounds().toBBoxString()
+	        };
+	        var parameters = L.Util.extend(defaultParameters, custormParams); //, customParams
 	        console.log(geoJsonUrl + L.Util.getParamString(parameters));
 	
 	        $.ajax({
@@ -168,7 +167,7 @@
 	            success: loadGeoJson
 	        });
 	
-	    //}
+	    }
 	}
 	
 
