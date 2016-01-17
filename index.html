@@ -94,8 +94,7 @@
 	
 	//WFS-tasot
 	var viheralueet_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:hkr_ylre_viheralue&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
-	//var karttataso_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:hkr_ylre_viheralue&srsName=EPSG:4326&format=ormat=text/javascript&outputFormat=json&format_options=callback:getJson";
-	var vaki_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:vaesto_vaki2014_1km&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
+	//var vaki_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:vaesto_vaki2014_1km&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
 
 
 	/*
@@ -116,7 +115,6 @@
 	var start_at_zoom = 8;
 	
 	function onEachFeature(feature, layer) {
-	    // does this feature have a property named dz?
 	    if (feature.properties && feature.properties.kunta) {
 	        layer.bindPopup(feature.properties.kunta);
 	    }
@@ -126,12 +124,12 @@
 	null, {
 	    onEachFeature: onEachFeature
 	}).addTo(map);
+	
 	load_wfs();
 	
 	function loadGeoJson(data) {
 	    //$("#total").html(data.features.length);
-	    featureLayer.clearLayers();
-	
+	    //featureLayer.clearLayers();
 	    featureLayer.addData(data);
 	
 	}
@@ -156,8 +154,9 @@
 	        var customParams = {
 	            bbox: map.getBounds().toBBoxString()
 	        };
+	        
 	        var parameters = L.Util.extend(defaultParameters, customParams); //, customParams
-	        console.log(geoJsonUrl + L.Util.getParamString(parameters));
+	        //console.log(geoJsonUrl + L.Util.getParamString(parameters));
 	
 	        $.ajax({
 	            //jsonp: false,
@@ -166,7 +165,6 @@
 	            jsonpCallback: 'getJson',
 	            success: loadGeoJson
 	        });
-	
 	    }
 	}
 	
