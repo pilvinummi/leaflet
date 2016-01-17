@@ -156,7 +156,7 @@
 	        var customParams = {
 	            bbox: map.getBounds().toBBoxString()
 	        };
-	        var parameters = L.Util.extend(defaultParameters, custormParams); //, customParams
+	        var parameters = L.Util.extend(defaultParameters, customParams); //, customParams
 	        console.log(geoJsonUrl + L.Util.getParamString(parameters));
 	
 	        $.ajax({
