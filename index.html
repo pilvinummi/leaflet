@@ -111,7 +111,7 @@
 	});
 	*/
 
-	/*
+	
 	//var start_at_zoom = 8;
 	
 	function onEachFeature(feature, layer) {
@@ -158,7 +158,7 @@
 	        var parameters = L.Util.extend(defaultParameters, customParams); //, customParams
 	        //console.log(geoJsonUrl + L.Util.getParamString(parameters));
 	
-	        $.ajax({
+	        $.get({
 	            //jsonp: false,
 	            url: geoJsonUrl + L.Util.getParamString(parameters),
 	            dataType: 'json',
@@ -167,7 +167,7 @@
 	        });
 	    //}
 	}
-	*/
+	
 
 	/*
 	var boundaries = new L.WFS({
@@ -186,7 +186,7 @@
 	        //})
 	*/
 	
-
+	/*
 	var wfst = new L.WFST({
 	    url: 'http://130.233.249.20:8080/geoserver/ows',
 	    typeNS: 'web_map_project',
@@ -202,7 +202,7 @@
 	    .once('load', function () {
 	      map.fitBounds(wfst);
 	    });
-	
+	*/
 	
 	var areas = null;
 	var ajax = $.ajax({ 
