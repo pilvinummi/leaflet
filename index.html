@@ -97,7 +97,7 @@
 	var vaki_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:vaesto_vaki2014_1km&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
 
 
-	
+	/*
 	var vaki = new L.GeoJSON();
 	function getJson(data) {
 		//console.log(data)
@@ -109,7 +109,7 @@
 		jsonCallback: 'getJson',
 		success: getJson
 	});
-	
+	*/
 
 	/*
 	//var start_at_zoom = 8;
@@ -186,23 +186,36 @@
 	        //})
 	*/
 	
-	/*
-	var wfst = new L.WFST({
-	    url: 'http://130.233.249.20:8080/geoserver/ows',
-	    typeNS: 'web_map_project',
-	    typeName: 'vaesto_vaki2014_1km_kp',
-	    crs: L.CRS.EPSG4326,
-	    geometryField: 'the_geom',
-	    style: {
-	      color: 'blue',
-	      weight: 2
-	    }
-	  }, new L.Format.GeoJSON({crs: L.CRS.EPSG4326}))
-	    .addTo(map)
-	    .once('load', function () {
-	      map.fitBounds(wfst);
-	    });
-	*/
+	var areas1 = null;
+	var ajax = $.ajax({ 
+        	url: vaki_wfs,
+		datatype:"json",
+		jsonCallback: 'getJson',
+		success : function (response) {
+        	  areas1 = L.geoJson(response, {
+                    style: function (feature) {
+                      return {
+                        stroke: true,
+                        weight: 1,
+                        //"stroke-width": 0.5
+                	opacity: 1,
+                	color: 'black'
+                	//dashArray: '3',
+                	//fillOpacity: 0.7,
+                	//fillColor: '#000'
+                      };
+                    },
+                    onEachFeature: function (feature, layer) {
+                      popupOptions = {maxWidth: 200};
+                      layer.bindPopup("<b>Viheralueen tunnus: </b> " + feature.properties.kunta
+                    }
+                  }).addTo(map);
+                }
+	}); 
+	
+	
+	
+
 	
 	var areas = null;
 	var ajax = $.ajax({ 
