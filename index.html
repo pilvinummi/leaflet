@@ -158,7 +158,7 @@
 	        var parameters = L.Util.extend(defaultParameters, customParams); //, customParams
 	        //console.log(geoJsonUrl + L.Util.getParamString(parameters));
 	
-	        $.get({
+	        $.ajax({
 	            //jsonp: false,
 	            url: geoJsonUrl + L.Util.getParamString(parameters),
 	            dataType: 'json',
