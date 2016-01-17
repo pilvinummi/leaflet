@@ -164,7 +164,7 @@
 	        $.ajax({
 	            jsonp: false,
 	            url: geoJsonUrl + L.Util.getParamString(parameters),
-	            dataType: 'jsonp',
+	            dataType: 'json',
 	            jsonpCallback: 'getJson',
 	            success: loadGeoJson
 	        });
