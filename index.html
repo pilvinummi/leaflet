@@ -116,12 +116,13 @@
 
 	var start_at_zoom = 8;
 	
+	var viheralueet = new L.GeoJSON();
 	load_wfs();
 	
 	function loadGeoJson(data) {
 	    // console.log(data);
-	    featureLayer.clearLayers();
-	    featureLayer.addData(data);
+	    viheralueet.clearLayers();
+	    viheralueet.addData(data);
 	}
 	
 	map.on('moveend', load_wfs);
