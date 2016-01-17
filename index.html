@@ -195,15 +195,15 @@
 		jsonCallback: 'getJson',
 		success : function (response) {
         	  areas1 = L.geoJson(response, {
-                    style: function (feature) {
-                      return {
-                      };
-                    },
-                    onEachFeature: function (feature, layer) {
-                      popupOptions = {maxWidth: 200};
-                      layer.bindPopup("<b>Viheralueen tunnus: </b> " + feature.properties.kunta
-                        ,popupOptions);
-                    }
+                    //style: function (feature) {
+                    //  return {
+                    //  };
+                    //},
+                    //onEachFeature: function (feature, layer) {
+                    //  popupOptions = {maxWidth: 200};
+                    //  layer.bindPopup("<b>Viheralueen tunnus: </b> " + feature.properties.kunta
+                    //    ,popupOptions);
+                    //}
                   }).addTo(map);
                 }
 	}); 
