@@ -142,20 +142,20 @@
 	        var defaultParameters = {
 		    service: 'WFS',
 		    format: 'json',
-		    version: '1.1.0',
+		    version: '1.0.0',
 		    request: 'GetFeature',
 		    typeName: 'WMS:wfs_vaki2014_1km_kp',
 		    //maxFeatures: 6505,
-		    outputFormat: 'json', 
+		    outputFormat: 'text/javascript', 
 		    format_options: 'callback: getJson',
 		    srsName:'EPSG:4326'
 	        };
-	
-	        var customParams = {
-	            bbox: map.getBounds().toBBoxString()
-	        };
+		
+	        //var customParams = {
+	        //    bbox: map.getBounds().toBBoxString()
+	        //};
 	        
-	        var parameters = L.Util.extend(defaultParameters, customParams); //, customParams
+	        var parameters = L.Util.extend(defaultParameters); //, customParams);
 	        //console.log(geoJsonUrl + L.Util.getParamString(parameters));
 	
 	        $.ajax({
