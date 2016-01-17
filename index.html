@@ -97,7 +97,7 @@
 	var vaki_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=WMS:wfs_vaki2014_1km_kp&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
 
 
-	
+	/*
 	var vaki = new L.GeoJSON();
 	function getJson(data) {
 		//console.log(data)
@@ -109,9 +109,9 @@
 		jsonCallback: 'getJson',
 		success: getJson
 	});
-	
+	*/
 
-	/*
+	
 	//var start_at_zoom = 8;
 	
 	function onEachFeature(feature, layer) {
@@ -144,7 +144,7 @@
 		    format: 'json',
 		    version: '1.1.0',
 		    request: 'GetFeature',
-		    typeName: 'web_map_project:vaki2014_1km_kp',
+		    typeName: 'WMS:wfs_vaki2014_1km_kp',
 		    //maxFeatures: 6505,
 		    outputFormat: 'application/json', 
 		    format_options: 'callback: getJson',
@@ -167,7 +167,7 @@
 	        });
 	    //}
 	}
-	*/
+	
 
 	/*
 	var boundaries = new L.WFS({
