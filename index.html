@@ -94,24 +94,24 @@
 	
 	//WFS-tasot
 	var viheralueet_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:hkr_ylre_viheralue&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
-	//var vaki_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:vaesto_vaki2014_1km&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
+	var vaki_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:vaesto_vaki2014_1km&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
 
 
-	/*
-	var viheralueet = new L.GeoJSON();
+	
+	var vaki = new L.GeoJSON();
 	function getJson(data) {
 		//console.log(data)
-		viheralueet.addData(data);
+		vaki.addData(data);
 	}
 	$.ajax({ 
-        	url: karttataso_wfs,
+        	url: vaki_wfs,
 		datatype:"json",
 		jsonCallback: 'getJson',
 		success: getJson
 	});
-	*/
-
 	
+
+	/*
 	//var start_at_zoom = 8;
 	
 	function onEachFeature(feature, layer) {
@@ -167,7 +167,7 @@
 	        });
 	    //}
 	}
-	
+	*/
 
 	/*
 	var boundaries = new L.WFS({
