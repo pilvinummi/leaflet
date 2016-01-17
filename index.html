@@ -98,13 +98,6 @@
 	//var vaki_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:vaesto_vaki2014_1km&srsName=EPSG:4326&format=json&outputFormat=text/javascript&format_options=callback:getJson";
 
 	var start_at_zoom = 8;
-
-	function onEachFeature(feature, layer) {
-	    // does this feature have a property named dz?
-	    if (feature.properties && feature.properties.dz) {
-	        layer.bindPopup(feature.properties.dz);
-	    }
-	}
 	
 	var featureLayer = new L.GeoJSON(
 	    null, {
@@ -148,18 +141,11 @@
 	            success: loadGeoJson
 	        });
 	
-	    } else {
-	        alert("please zoom in to see the polygons!");
-	        featureLayer.clearLayers();
 	    }
 	}
 
 
 
-
-
-
-	
 	
 	var areas = null;
 	var ajax = $.ajax({ 
