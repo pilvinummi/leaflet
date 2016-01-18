@@ -146,7 +146,7 @@
 		    request: 'GetFeature',
 		    typeName: 'WMS:wfs_vaki2014_1km_kp',
 		    //maxFeatures: 6505,
-		    outputFormat: 'text/javascript', 
+		    outputFormat: 'json', 
 		    format_options: 'callback: getJson',
 		    srsName:'EPSG:4326'
 	        };
@@ -159,7 +159,7 @@
 	        //console.log(geoJsonUrl + L.Util.getParamString(parameters));
 	
 	        $.ajax({
-	            jsonp: false,
+	            //jsonp: false,
 	            url: geoJsonUrl + L.Util.getParamString(parameters),
 	            dataType: 'json',
 	            jsonpCallback: 'getJson',
