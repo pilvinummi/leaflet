@@ -134,7 +134,7 @@
                       "<br><b>Väkimäärä: </b> " + feature.properties.vaesto
                         ,popupOptions);
                     }
-                  }).addTo(map);
+                  });//.addTo(map);
                 }
 	}); 
 	
@@ -208,7 +208,7 @@
 		        click: zoomToFeature
 		      });
                     }
-                  }).addTo(map);
+                  });//.addTo(map);
                 }
 	}); 
 
@@ -237,13 +237,16 @@
   	}
 
 	
+	L.control.layers({
+	    'Viheralueet': viheralueet,
+	    'Väestöruutu': vaesto
+	}).addTo(map);
 	
 	
 	
 	
 	
-	
-	
+	/*
 	//WMS-tasot
 	var rakennukset_wms = L.tileLayer.wms("http://130.233.249.20:8080/geoserver/WMS/wms", {
 		layers: 'WMS:Rakennukset',
@@ -303,7 +306,7 @@
 	    
 	    layers.appendChild(link);
 	}
-	
+	*/
 	
 	//WMS-tason popup-scripti
 	/*
