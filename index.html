@@ -155,7 +155,7 @@
 	            bbox: map.getBounds().toBBoxString()
 	        };
 	        
-	        var parameters = L.Util.extend(defaultParameters, customParams);
+	        var parameters = L.Util.extend(defaultParameters); //, customParams);
 	        //console.log(geoJsonUrl + L.Util.getParamString(parameters));
 	
 	        $.ajax({
