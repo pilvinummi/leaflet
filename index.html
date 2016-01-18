@@ -95,86 +95,10 @@
 	//WFS-tasot
 	var viheralueet_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:hkr_ylre_viheralue&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
 	//var bbox = map.getBounds().toBBoxString()
-	var vaki_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=WMS:vaki2014_1km_norm&filter=%3CPropertyIsEqualTo%3E%3CPropertyName%3Ekunta%3C/PropertyName%3E%3CLiteral%3E091%3C/Literal%3E%3C/PropertyIsEqualTo%3E&maxFeatures=1000&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
+	var vaki_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=WMS:wfs_vaki2014_1km_kp&filter=%3CPropertyIsEqualTo%3E%3CPropertyName%3Ekunta%3C/PropertyName%3E%3CLiteral%3E091%3C/Literal%3E%3C/PropertyIsEqualTo%3E&maxFeatures=1000&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
 
 
-	/*
-	//var start_at_zoom = 8;
-	
-	function onEachFeature(feature, layer) {
-	    if (feature.properties && feature.properties.kunta) {
-	        layer.bindPopup(feature.properties.kunta);
-	    }
-	}
-
-	var featureLayer = new L.GeoJSON(
-	null, {
-	    onEachFeature: onEachFeature
-	}).addTo(map);
-	
-	load_wfs();
-	
-	function loadGeoJson(data) {
-	    //$("#total").html(data.features.length);
-	    //featureLayer.clearLayers();
-	    featureLayer.addData(data);
-	
-	}
-	
-	map.on('moveend', load_wfs);
-	
-	function load_wfs() {
-	    //if (map.getZoom() > start_at_zoom) {
-	        var geoJsonUrl = 'http://130.233.249.20:8080/geoserver/wfs';
-	        var defaultParameters = {
-		    service: 'WFS',
-		    format: 'json',
-		    version: '1.0.0',
-		    request: 'GetFeature',
-		    typeName: 'WMS:wfs_vaki2014_1km_kp',
-		    //maxFeatures: 6505,
-		    outputFormat: 'application/json', 
-		    format_options: 'callback: getJson',
-		    srsName:'EPSG:4326'
-	        };
-		
-	        var customParams = {
-	            bbox: map.getBounds().toBBoxString()
-	        };
-	        
-	        var parameters = L.Util.extend(defaultParameters); //, customParams);
-	        //console.log(geoJsonUrl + L.Util.getParamString(parameters));
-	
-	        $.ajax({
-	            //jsonp: false,
-	            url: geoJsonUrl + L.Util.getParamString(parameters),
-	            dataType: 'json',
-	            jsonpCallback: 'getJson',
-	            success: loadGeoJson
-	        });
-	    //}
-	}
-	*/
-
-	/*
-	var boundaries = new L.WFS({
-	    url: 'http://130.233.249.20:8080/geoserver/ows',
-	    typeNS: 'WMS',
-	    typeName: 'wfs_vaki2014_1km_kp',
-	    crs: L.CRS.EPSG4326,
-	    geometryField: 'the_geom'
-	    //style: {
-	     //   color: 'blue',
-	     //   weight: 2
-	    //}
-	}).addTo(map)
-	        //.on('load', function () {
-	        //    map.fitBounds(boundaries);
-	        //})
-	*/
-	
-	//Toimi jotenkin, mutta kestää ladata tosi kauan...
-	
+	//Vaesto WFS
 	var areas1 = null;
 	var ajax = $.ajax({ 
         	url: vaki_wfs,
@@ -203,9 +127,7 @@
 	}); 
 	
 	
-	
-
-	
+	//Viheralueet WFS
 	var areas = null;
 	var ajax = $.ajax({ 
         	url: viheralueet_wfs,
@@ -357,7 +279,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     
     
-    <script src="http://pesonet1.github.io/Leaflet/WFS.js"></script>
+    <!--<script src="http://pesonet1.github.io/Leaflet/WFS.js"></script>-->
     
     <nav id='menu-ui' class='menu-ui'></nav>
     <div id="map"></div>
