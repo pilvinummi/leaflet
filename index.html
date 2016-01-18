@@ -150,7 +150,7 @@
 	
 	//Viheralueet WFS
 	//var viheralueet = null;
-	var ajax = $.ajax({ 
+	var viheralueet1 = $.ajax({ 
         	url: viheralueet_wfs,
 		datatype:"json",
 		jsonCallback: 'getJson',
@@ -198,7 +198,7 @@
 	  // reset all features back to their regularly defined styles
 	  function reset(){
 	    for (var i = previousIds.length - 1; i >= 0; i--) {
-	      viheralueet.resetStyle(previousIds[i]);
+	      viheralueet1.resetStyle(previousIds[i]);
 	    };
 	  }
 	
@@ -210,10 +210,10 @@
 	    var inputGeometry = geometries[geometry.value];
 	
 	    // query the service executing the selected relation with the selected input geometry
-	    viheralueet.query()[relationship.value](inputGeometry).ids(function(error, ids){
+	    viheralueet1.query()[relationship.value](inputGeometry).ids(function(error, ids){
 	      previousIds = ids;
 	      for (var i = ids.length - 1; i >= 0; i--) {
-	        viheralueet.setFeatureStyle(ids[i], { color: 'red', weight: 2 });
+	        viheralueet1.setFeatureStyle(ids[i], { color: 'red', weight: 2 });
 	      };
 	    });
 	  }
@@ -226,7 +226,7 @@
 	
 	
 	  // once all neighborhoods have loaded run the default query
-	  viheralueet.once('load', function(){
+	  viheralueet1.once('load', function(){
 	    query();
 	  });
 	
