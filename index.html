@@ -143,7 +143,7 @@
                       "<br><b>Väkimäärä: </b> " + feature.properties.vaesto
                         ,popupOptions);
                     }
-                  }).addTo(map);
+                  }); //.addTo(map);
                 }
 	}); 
 	
@@ -180,15 +180,26 @@
                 }
 	}); 
 
-	map.removeLayer(viheralueet_wfs);
-	
-	var overlays = {
-		"Viheralueet": viheralueet_wfs
-	};
+	var previousIds = [];
 
-	L.control.layers(overlays).addTo(map);
+	  map.on('click', function(e){
+	    viheralueet_wfs.query().nearby(e.latlng, 500).ids(function(error, ids){
+	      for (var j = 0; j < previousIds.length; j++) {
+	        viheralueet_wfs.resetStyle(previousIds[j]);
+	      }
 	
+	      previousIds = ids;
 	
+	      for (var i = 0; i < ids.length; i++) {
+	        viheralueet_wfs.setFeatureStyle(ids[i], {
+	          color: '#BA454E',
+	          weight: 2,
+	          opacity: 0.85,
+	          fillOpacity: 0.5
+	        });
+	      }
+	    });
+	  });
 	
 	
 	
@@ -312,23 +323,6 @@
  
     <nav id='menu-ui' class='menu-ui'></nav>
     <div id="map"></div>
-    
-    <div id="panel" class="leaflet-bar">
-	  Neighborhoods
-	  <select name="relation" id="relationSelect">
-	    <option value="within">Within<options>
-	    <option value="contains">Contains<options>
-	    <option value="intersects">Intersects<options>
-	    <option value="overlaps">Overlaps<options>
-	  </select>
-	  <select name="geometry" id="geometrySelect">
-	    <option value="bounds">Bounds<options>
-	    <option value="point">Point<options>
-	    <option value="line">Line<options>
-	    <option value="polygon">Polygon<options>
-	  </select>
-    </div>
-    
     
   </body>
 </html>
