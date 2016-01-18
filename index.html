@@ -100,7 +100,7 @@
 
 	//Vaesto WFS
 	//var vaesto = null;
-	var ajax = $.ajax({ 
+	var vaesto1 = $.ajax({ 
         	url: vaki_wfs,
 		datatype:"json",
 		jsonCallback: 'getJson',
@@ -185,7 +185,7 @@
 	 // collect geometries into an object so we can reference them later
 	  var geometries = {
 	    bounds: vaesto,
-	    polygon: vaesto,
+	    polygon: vaesto1,
 	    //point: marker
 	  };
 	
