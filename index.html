@@ -202,8 +202,7 @@
                         ,popupOptions);
                         
                       layer.on({
-		          mousemove: mousemove,
-		          mouseout: mouseout,
+		    
 		          click: zoomToFeature
 		      });
                     }
@@ -211,27 +210,6 @@
                 }
 	}); 
 
-	function mouseout(e) {
-	      statesLayer.resetStyle(e.target);
-	      closeTooltip = window.setTimeout(function() {
-	          map.closePopup();
-	      }, 100);
-	  }
-
-	 function mousemove(e) {
-	      var layer = e.target;
-
-	      // highlight feature
-	      layer.setStyle({
-	          weight: 3,
-	          opacity: 0.3,
-	          fillOpacity: 0.9
-	      });
-	
-	      if (!L.Browser.ie && !L.Browser.opera) {
-	          layer.bringToFront();
-	      }
-	  }
 
 
 	/*
