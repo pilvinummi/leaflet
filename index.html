@@ -182,21 +182,47 @@
 	
 	
 	
-	 // query the API and highlight features
+	 // collect geometries into an object so we can reference them later
+	  var geometries = {
+	    bounds: vaesto,
+	    polygon: vaesto,
+	    //point: marker
+	  };
+	
+	  // get references to our <select> elements
+	  var relationship = document.getElementById('relationSelect');
+	  var geometry = document.getElementById('geometrySelect');
+	
+	  var previousIds = [];
+	
+	  // reset all features back to their regularly defined styles
+	  function reset(){
+	    for (var i = previousIds.length - 1; i >= 0; i--) {
+	      viheralueet.resetStyle(previousIds[i]);
+	    };
+	  }
+	
+	  // query the API and highlight features
 	  function query(){
 	    reset();
 	
 	    // lookup our input geometry
-	    var inputGeometry = vaesto;
+	    var inputGeometry = geometries[geometry.value];
 	
 	    // query the service executing the selected relation with the selected input geometry
-	    viheralueet.query()[intersects](inputGeometry).ids(function(error, ids){
+	    viheralueet.query()[relationship.value](inputGeometry).ids(function(error, ids){
 	      previousIds = ids;
 	      for (var i = ids.length - 1; i >= 0; i--) {
 	        viheralueet.setFeatureStyle(ids[i], { color: 'red', weight: 2 });
 	      };
 	    });
 	  }
+	  
+	  
+	  // query when an input changes
+	  geometry.addEventListener('change', query);
+	  relationship.addEventListener('change', query);
+
 	
 	
 	  // once all neighborhoods have loaded run the default query
@@ -326,6 +352,23 @@
  
     <nav id='menu-ui' class='menu-ui'></nav>
     <div id="map"></div>
+    
+    <div id="panel" class="leaflet-bar">
+	  Neighborhoods
+	  <select name="relation" id="relationSelect">
+	    <option value="within">Within<options>
+	    <option value="contains">Contains<options>
+	    <option value="intersects">Intersects<options>
+	    <option value="overlaps">Overlaps<options>
+	  </select>
+	  <select name="geometry" id="geometrySelect">
+	    <option value="bounds">Bounds<options>
+	    <option value="point">Point<options>
+	    <option value="line">Line<options>
+	    <option value="polygon">Polygon<options>
+	  </select>
+	</div>
+    
     
   </body>
 </html>
