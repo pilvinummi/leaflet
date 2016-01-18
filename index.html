@@ -149,7 +149,7 @@
 	
 	
 	//Viheralueet WFS
-	//var viheralueet = null;
+	var viheralueet = null;
 	var viheralueet_wfs = $.ajax({ 
         	url: viheralueet_wfs,
 		datatype:"json",
@@ -183,15 +183,15 @@
 	var previousIds = [];
 
 	  map.on('click', function(e){
-	    viheralueet_wfs.query().nearby(e.latlng, 500).ids(function(error, ids){
+	    viheralueet.query().nearby(e.latlng, 1000).ids(function(error, ids){
 	      for (var j = 0; j < previousIds.length; j++) {
-	        viheralueet_wfs.resetStyle(previousIds[j]);
+	        viheralueet.resetStyle(previousIds[j]);
 	      }
 	
 	      previousIds = ids;
 	
 	      for (var i = 0; i < ids.length; i++) {
-	        viheralueet_wfs.setFeatureStyle(ids[i], {
+	        viheralueet.setFeatureStyle(ids[i], {
 	          color: '#BA454E',
 	          weight: 2,
 	          opacity: 0.85,
