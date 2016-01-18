@@ -110,12 +110,13 @@
                       var fillColor, 
                       density = feature.properties.vaesto;
                       
-		      if ( density > 4000 ) fillColor = "#006837";
-		      else if ( density > 2000 ) fillColor = "#31a354";
-		      else if ( density > 1000 ) fillColor = "#78c679";
-		      else if ( density > 500 ) fillColor = "#c2e699";
-		      else if ( density > 0 ) fillColor = "#ffffcc";
-		      else fillColor = "#f7f7f7";  // no data
+                      if ( density > 8000 ) fillColor = "#28a428"
+		      else if ( density > 4000 ) fillColor = "#32cd32";
+		      else if ( density > 2000 ) fillColor = "#5bd75b";
+		      else if ( density > 1000 ) fillColor = "#84e184";
+		      else if ( density > 500 ) fillColor = "#adebad";
+		      else if ( density > 0 ) fillColor = "#d6f5d6";
+		      else fillColor = "#ebfaeb";  // no data
 		      
 		      return {
 		      	color: "#999", 
