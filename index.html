@@ -163,7 +163,7 @@
 		      else if ( kaytto == "Venesatama / Venevalkama" ) fillColor = "#00b7e6";
 		      else if ( kaytto == "Viljelypalsta" ) fillColor = "#ffffb3";
 		      else if ( kaytto == "Muut viheralueet" ) fillColor = "#804c1a";
-		      else if ( kaytto == "Yleiskaavan viheralue" ) fillColor = "#ff0000";
+		      //else if ( kaytto == "Yleiskaavan viheralue" ) fillColor = "#ff0000";
 		      else fillColor == "black";  // no data
 		      
 		      //Muu toimiluokka
@@ -180,12 +180,9 @@
 		      //Viljelypalsta-alue
 		      //Haudat (hautausmaat)
 		      //Suojaviheralue
-	
 		      //Katualue
 		      //Rata-alue
-		      //Erityiskohteet, asemakaavoitettu viheralue
 		      //Saari (saaret ilman siltayhteyttä)
-		      //Suojaviheralue
 		      
 		      return {
 		      	color: "black", 
@@ -209,6 +206,23 @@
 	}); 
 
 	
+	
+	var RADIUS = 500;
+	var filterCircle = L.circle(L.latLng(40, -75), RADIUS, {
+	    opacity: 1,
+	    weight: 1,
+	    fillOpacity: 0.4
+	}).addTo(map);
+	
+	
+	map.on('mousemove', function(e) {
+	    filterCircle.setLatLng(e.latlng);
+	    viheralueet_wfs.setFilter(function showAirport(feature) {
+	        return e.latlng.distanceTo(L.latLng(
+	                feature.geometry.coordinates[1],
+	                feature.geometry.coordinates[0])) < RADIUS;
+	    });
+	});
 	
 	/*
 	//WMS-tasot
