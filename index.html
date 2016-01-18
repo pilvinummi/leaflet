@@ -194,7 +194,7 @@
                     },
                     onEachFeature: function (feature, layer) {
                       popupOptions = {maxWidth: 200};
-                      layer.bindPopup("<b>Viheralueen tunnus: </b> " + feature.properties.kunta
+                      layer.bindPopup("<b>Kuntatunnus: </b> " + feature.properties.kunta
                         ,popupOptions);
                     }
                   }).addTo(map);
@@ -265,8 +265,7 @@
 	addLayer(rakennukset_wms, 'Rakennukset', 1);
 	addLayer(vaki_wms, 'Väkimäärä', 2);
 	addLayer(aurinko_wms, 'Aurinkopaneelit', 3);
-	//addLayer(ajax, 'Viheralueet', 4);
-	//addLayer(viheralueet, 'Viheralueet', 4);
+	addLayer(ajax, 'Viheralueet', 4);
 	//addLayer(vaki, 'Väestöruudukko', 5);
 	
 	map.removeLayer(rakennukset_wms);
