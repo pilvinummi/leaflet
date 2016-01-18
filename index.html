@@ -155,7 +155,7 @@
 	}
 	*/
 
-	
+	/*
 	var boundaries = new L.WFS({
 	    url: 'http://130.233.249.20:8080/geoserver/ows',
 	    typeNS: 'WMS',
@@ -170,10 +170,10 @@
 	        //.on('load', function () {
 	        //    map.fitBounds(boundaries);
 	        //})
-	
+	*/
 	
 	//Toimi jotenkin, mutta kestää ladata tosi kauan...
-	/*
+	
 	var areas1 = null;
 	var ajax = $.ajax({ 
         	url: vaki_wfs,
@@ -181,25 +181,25 @@
 		jsonCallback: 'getJson',
 		success : function (response) {
         	  areas1 = L.geoJson(response, {
-                    //style: function (feature) {
-                    //  return {
-                    //	radius: 2,
-		    //	fillColor: "#ff7800",
-		//	color: "#000",
-		//	weight: 1,
-		//	opacity: 1,
-		//	fillOpacity: 0.8
-                 //     };
-                  //  }
-                    //onEachFeature: function (feature, layer) {
-                    //  popupOptions = {maxWidth: 200};
-                    //  layer.bindPopup("<b>Viheralueen tunnus: </b> " + feature.properties.kunta
-                    //    ,popupOptions);
-                    //}
+                    style: function (feature) {
+                      return {
+                    	radius: 2,
+		        fillColor: "#ff7800",
+			color: "#000",
+			weight: 1,
+			opacity: 1,
+			fillOpacity: 0.8
+                      };
+                    },
+                    onEachFeature: function (feature, layer) {
+                      popupOptions = {maxWidth: 200};
+                      layer.bindPopup("<b>Viheralueen tunnus: </b> " + feature.properties.kunta
+                        ,popupOptions);
+                    }
                   }).addTo(map);
                 }
 	}); 
-	*/
+	
 	
 	
 
