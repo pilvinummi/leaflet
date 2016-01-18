@@ -237,10 +237,12 @@
   	}
 
 	
-	L.control.layers({
-	    'Viheralueet': viheralueet_wfs,
-	    'Väestöruutu': vaesto_wfs
-	}).addTo(map);
+	var overlays = {
+    	  "Viheralueet": viheralueet,
+	  "Väestöruudukko": vaesto
+	};
+
+	L.control.layers(overlays).addTo(map);
 	
 	
 	
