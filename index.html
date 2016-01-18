@@ -200,7 +200,8 @@
                         "<br><b>Käyttötarkoitus id: </b> " + feature.properties.kayttotarkoitus_id +
                         "<br><b>Pinta-ala: </b> " + feature.properties.pinta_ala
                         ,popupOptions);
-                        
+                      
+                      //Mahdollistaa kohteen korostuksen ja kohdetta klikkaamalla siihen kohdistuksen  
                       layer.on({
                       	mousemove: mousemove,
           	        mouseout: mouseout, 
@@ -236,7 +237,13 @@
   	}
 
 	
-	/*
+	
+	
+	
+	
+	
+	
+	
 	//WMS-tasot
 	var rakennukset_wms = L.tileLayer.wms("http://130.233.249.20:8080/geoserver/WMS/wms", {
 		layers: 'WMS:Rakennukset',
@@ -262,8 +269,8 @@
 	addLayer(rakennukset_wms, 'Rakennukset', 1);
 	addLayer(vaki_wms, 'Väkimäärä', 2);
 	addLayer(aurinko_wms, 'Aurinkopaneelit', 3);
-	addLayer(ajax, 'Viheralueet', 4);
-	//addLayer(vaki, 'Väestöruudukko', 5);
+	addLayer(viheralueet, 'Viheralueet', 4);
+	addLayer(vaki, 'Väestöruudukko', 5);
 	
 	map.removeLayer(rakennukset_wms);
 	map.removeLayer(vaki_wms);
@@ -296,7 +303,7 @@
 	    
 	    layers.appendChild(link);
 	}
-	*/
+	
 	
 	//WMS-tason popup-scripti
 	/*
