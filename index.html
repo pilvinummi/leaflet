@@ -202,7 +202,6 @@
                         ,popupOptions);
                         
                       layer.on({
-		    
 		          click: zoomToFeature
 		      });
                     }
@@ -210,6 +209,10 @@
                 }
 	}); 
 
+
+	function zoomToFeature(e) {
+	  map.fitBounds(e.target.getBounds());
+	}
 
 
 	/*
