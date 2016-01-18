@@ -200,12 +200,17 @@
                         "<br><b>Käyttötarkoitus id: </b> " + feature.properties.kayttotarkoitus_id +
                         "<br><b>Pinta-ala: </b> " + feature.properties.pinta_ala
                         ,popupOptions);
+                        
+                      layer.on({
+		          mousemove: mousemove,
+		          mouseout: mouseout,
+		          click: zoomToFeature
+		      });
                     }
                   }).addTo(map);
                 }
 	}); 
 
-	
 	
 	var RADIUS = 500;
 	var filterCircle = L.circle(L.latLng(40, -75), RADIUS, {
