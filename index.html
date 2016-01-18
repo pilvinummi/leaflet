@@ -94,7 +94,6 @@
 	
 	//WFS-tasot
 	var viheralueet_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:hkr_ylre_viheralue&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
-	//var bbox = map.getBounds().toBBoxString()
 	var vaki_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=WMS:vaki2014_1km_norm&filter=%3CPropertyIsEqualTo%3E%3CPropertyName%3Ekunta%3C/PropertyName%3E%3CLiteral%3E091%3C/Literal%3E%3C/PropertyIsEqualTo%3E&maxFeatures=1000&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
 
 
@@ -112,7 +111,7 @@
                       
                       //if ( density > 14000) fillColor =
                       if ( density > 12000) fillColor = "#1e7b1e";
-                      //lse if ( density > 10000) fillColor =
+                      //else if ( density > 10000) fillColor =
                       else if ( density > 8000 ) fillColor = "#28a428";
 		      else if ( density > 4000 ) fillColor = "#32cd32";
 		      else if ( density > 2000 ) fillColor = "#5bd75b";
@@ -164,7 +163,7 @@
 		      else if ( kaytto == "Venesatama / Venevalkama" ) fillColor = "#00b7e6";
 		      else if ( kaytto == "Viljelypalsta" ) fillColor = "#ffffb3";
 		      else if ( kaytto == "Muut viheralueet" ) fillColor = "#804c1a";
-		      else if ( kaytto == "Yleiskaavan%" ) fillColor = "#ff0000";
+		      else if ( kaytto.includes("Yleiskaavan" ) fillColor = "#ff0000";
 		      else fillColor == "black";  // no data
 		      
 		      //Muu toimiluokka
