@@ -100,7 +100,7 @@
 
 	//Vaesto WFS
 	//var vaesto = null;
-	var vaesto1 = $.ajax({ 
+	var vaesto_wfs = $.ajax({ 
         	url: vaki_wfs,
 		datatype:"json",
 		jsonCallback: 'getJson',
@@ -150,7 +150,7 @@
 	
 	//Viheralueet WFS
 	//var viheralueet = null;
-	var viheralueet1 = $.ajax({ 
+	var viheralueet_wfs = $.ajax({ 
         	url: viheralueet_wfs,
 		datatype:"json",
 		jsonCallback: 'getJson',
@@ -179,56 +179,7 @@
                   }).addTo(map);
                 }
 	}); 
-	
-	
-	
-	 // collect geometries into an object so we can reference them later
-	  var geometries = {
-	    bounds: vaesto1,
-	    polygon: vaesto1,
-	    //point: marker
-	  };
-	
-	  // get references to our <select> elements
-	  var relationship = document.getElementById('relationSelect');
-	  var geometry = document.getElementById('geometrySelect');
-	
-	  var previousIds = [];
-	
-	  // reset all features back to their regularly defined styles
-	  function reset(){
-	    for (var i = previousIds.length - 1; i >= 0; i--) {
-	      viheralueet1.resetStyle(previousIds[i]);
-	    };
-	  }
-	
-	  // query the API and highlight features
-	  function query(){
-	    reset();
-	
-	    // lookup our input geometry
-	    var inputGeometry = geometries[geometry.value];
-	
-	    // query the service executing the selected relation with the selected input geometry
-	    viheralueet1.query()[relationship.value](inputGeometry).ids(function(error, ids){
-	      previousIds = ids;
-	      for (var i = ids.length - 1; i >= 0; i--) {
-	        viheralueet1.setFeatureStyle(ids[i], { color: 'red', weight: 2 });
-	      };
-	    });
-	  }
-	  
-	  
-	  // query when an input changes
-	  geometry.addEventListener('change', query);
-	  relationship.addEventListener('change', query);
 
-	
-	
-	  // once all neighborhoods have loaded run the default query
-	  viheralueet1.once('load', function(){
-	    query();
-	  });
 	
 	
 	
@@ -367,7 +318,7 @@
 	    <option value="line">Line<options>
 	    <option value="polygon">Polygon<options>
 	  </select>
-	</div>
+    </div>
     
     
   </body>
