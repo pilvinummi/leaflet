@@ -194,7 +194,8 @@
                     },
                     onEachFeature: function (feature, layer) {
                       popupOptions = {maxWidth: 200};
-                      layer.bindPopup("<b>Kuntatunnus: </b> " + feature.properties.kunta
+                      layer.bindPopup("<b>Kuntatunnus: </b> " + feature.properties.kunta + 
+                      "<br><b>Väkimäärä: </b> " + feature.properties.vaesto
                         ,popupOptions);
                     }
                   }).addTo(map);
