@@ -129,7 +129,7 @@
 	
 	function loadGeoJson(data) {
 	    //$("#total").html(data.features.length);
-	    featureLayer.clearLayers();
+	    //featureLayer.clearLayers();
 	    featureLayer.addData(data);
 	
 	}
@@ -159,7 +159,7 @@
 	        //console.log(geoJsonUrl + L.Util.getParamString(parameters));
 	
 	        $.ajax({
-	            //jsonp: false,
+	            jsonp: false,
 	            url: geoJsonUrl + L.Util.getParamString(parameters),
 	            dataType: 'json',
 	            jsonpCallback: 'getJson',
