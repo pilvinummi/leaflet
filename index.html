@@ -236,16 +236,9 @@
           viheralueet.resetStyle(e.target);
   	}
 
-	
-	var overlays = {
-    	  "Viheralueet": viheralueet,
-	  "Väestöruudukko": vaesto
-	};
 
-
-	// add layer groups to layer switcher control
-	var controlLayers = L.control.layers(overlays).addTo(map);
-	
+	map.addLayer(viheralueet);
+	map.addLayer(vaesto);
 	
 	
 	
