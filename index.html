@@ -202,7 +202,9 @@
                         ,popupOptions);
                         
                       layer.on({
-		          click: zoomToFeature
+                      	mousemove: mousemove,
+          	        mouseout: mouseout, 
+		        click: zoomToFeature
 		      });
                     }
                   }).addTo(map);
@@ -214,27 +216,25 @@
 	  map.fitBounds(e.target.getBounds());
 	}
 
+	function mousemove(e) {
+	  var layer = e.target;
+	
+	  // highlight feature
+	  layer.setStyle({
+	    weight: 3,
+	    opacity: 0.3,
+	    illOpacity: 0.9
+	  });
+	
+	  if (!L.Browser.ie && !L.Browser.opera) {
+	    layer.bringToFront();
+	  }
+	}
 
-	/*
-	var RADIUS = 500;
-	var filterCircle = L.circle(L.latLng(40, -75), RADIUS, {
-	    opacity: 1,
-	    weight: 1,
-	    fillOpacity: 0.4
-	}).addTo(map);
-	
-	
-	map.on('click', function(e) {
-	    filterCircle.setLatLng(e.latlng);
-	    viheralueet.setFilter(function showAirport(feature) {
-	        return e.latlng.distanceTo(L.latLng(
-	                feature.geometry.coordinates[1],
-	                feature.geometry.coordinates[0])) < RADIUS;
-	    });
-	});
-	*/
-	
-	
+	function mouseout(e) {
+          statesLayer.resetStyle(e.target);
+  	}
+
 	
 	/*
 	//WMS-tasot
