@@ -182,8 +182,32 @@
 	
 	
 	
+	 // query the API and highlight features
+	  function query(){
+	    reset();
+	
+	    // lookup our input geometry
+	    var inputGeometry = vaesto;
+	
+	    // query the service executing the selected relation with the selected input geometry
+	    viheralueet.query()[intersects](inputGeometry).ids(function(error, ids){
+	      previousIds = ids;
+	      for (var i = ids.length - 1; i >= 0; i--) {
+	        viheralueet.setFeatureStyle(ids[i], { color: 'red', weight: 2 });
+	      };
+	    });
+	  }
 	
 	
+	  // once all neighborhoods have loaded run the default query
+	  viheralueet.once('load', function(){
+	    query();
+	  });
+	
+	
+	
+	
+	/*
 	//WMS-tasot
 	var rakennukset_wms = L.tileLayer.wms("http://130.233.249.20:8080/geoserver/WMS/wms", {
 		layers: 'WMS:Rakennukset',
@@ -243,7 +267,7 @@
 	    
 	    layers.appendChild(link);
 	}
-	
+	*/
 	
 	//WMS-tason popup-scripti
 	/*
