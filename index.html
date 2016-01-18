@@ -211,7 +211,30 @@
                 }
 	}); 
 
+	function mouseout(e) {
+	      statesLayer.resetStyle(e.target);
+	      closeTooltip = window.setTimeout(function() {
+	          map.closePopup();
+	      }, 100);
+	  }
+
+	 function mousemove(e) {
+	      var layer = e.target;
+
+	      // highlight feature
+	      layer.setStyle({
+	          weight: 3,
+	          opacity: 0.3,
+	          fillOpacity: 0.9
+	      });
 	
+	      if (!L.Browser.ie && !L.Browser.opera) {
+	          layer.bringToFront();
+	      }
+	  }
+
+
+	/*
 	var RADIUS = 500;
 	var filterCircle = L.circle(L.latLng(40, -75), RADIUS, {
 	    opacity: 1,
@@ -228,6 +251,9 @@
 	                feature.geometry.coordinates[0])) < RADIUS;
 	    });
 	});
+	*/
+	
+	
 	
 	/*
 	//WMS-tasot
