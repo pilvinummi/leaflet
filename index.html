@@ -134,7 +134,7 @@
                       "<br><b>Väkimäärä: </b> " + feature.properties.vaesto
                         ,popupOptions);
                     }
-                  });//.addTo(map);
+                  }).addTo(map);
                 }
 	}); 
 	
@@ -208,7 +208,7 @@
 		        click: zoomToFeature
 		      });
                     }
-                  });//.addTo(map);
+                  }).addTo(map);
                 }
 	}); 
 
@@ -236,11 +236,6 @@
           viheralueet.resetStyle(e.target);
   	}
 
-
-	map.addLayer(viheralueet_wfs);
-	map.addLayer(vaesto_wfs);
-	
-	
 	
 	
 	/*
