@@ -157,23 +157,50 @@
 		success : function (response) {
         	  viheralueet = L.geoJson(response, {
                     style: function (feature) {
-                      return {
-                        stroke: true,
-                        weight: 1,
+                      var fillColor, 
+                      kaytto = feature.properties.kayttotarkoitus;
+                      
+                      if ( kaytto = "Asemakaavoitettu viheralue" ) fillColor = "black";
+                      else if ( kaytto = "Kartano- ja huvila-alue" ) fillColor = "green";
+                      else if ( kaytto = "Kesamaja-alue" ) fillColor = "grey";
+                      else if ( kaytto = "Koira-aitaus" ) fillColor = "#1e7b1e";
+                      else if ( kaytto = "Leikkipaikka" ) fillColor = "yellow";
+                      else if ( kaytto = "Leikkipuisto" ) fillColor = "#28a428";
+		      else if ( kaytto = "Luonnonsuojelualue" ) fillColor = "#32cd32";
+		      else if ( kaytto = "Siirtolapuutarha" ) fillColor = "#5bd75b";
+		      else if ( kaytto = "Uimaranta-alue" ) fillColor = "#84e184";
+		      else if ( kaytto = "Venesatama / Venevalkama" ) fillColor = "#adebad";
+		      else if ( kaytto = "Viljelypalsta" ) fillColor = "#d6f5d6";
+		      else if ( kaytto = "Muut viheralueet" ) fillColor = "brown";
+		      else fillColor = "#ebfaeb";  // no data
+		      
+		      return {
+		      	color: "black", 
+		      	weight: 1, 
+		      	fillColor: fillColor, 
+		      	fillOpacity: 0.8 
+		      };
+                    	
+                    	
+                 
+                      //return {
+                        //stroke: true,
+                        //weight: 1,
                         //"stroke-width": 0.5
-                	opacity: 1,
-                	color: 'black'
+                	//opacity: 1,
+                	//color: 'black'
                 	//dashArray: '3',
                 	//fillOpacity: 0.7,
                 	//fillColor: '#000'
-                      };
+                      //};
                     },
                     onEachFeature: function (feature, layer) {
                       popupOptions = {maxWidth: 200};
                       layer.bindPopup("<b>Viheralueen tunnus: </b> " + feature.properties.viheralue_id +
-                        "<br><b>Nimi: </b>" + feature.properties.puiston_nimi +
-                        "<br><b>Kayttötarkoitus: </b>" + feature.properties.kayttotarkoitus + 
-                        "<br><b>Pinta-ala: </b>" + feature.properties.pinta_ala
+                        "<br><b>Nimi: </b> " + feature.properties.puiston_nimi +
+                        "<br><b>Käyttötarkoitus: </b> " + feature.properties.kayttotarkoitus +
+                        "<br><b>Käyttötarkoitus id: </b> " + feature.properties.kayttotarkoitus_id +
+                        "<br><b>Pinta-ala: </b> " + feature.properties.pinta_ala
                         ,popupOptions);
                     }
                   }).addTo(map);
