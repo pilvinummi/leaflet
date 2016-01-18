@@ -110,7 +110,10 @@
                       var fillColor, 
                       density = feature.properties.vaesto;
                       
-                      if ( density > 8000 ) fillColor = "#28a428"
+                      //if ( density > 14000) fillColor =
+                      if ( density > 12000) fillColor = "#1e7b1e";
+                      //lse if ( density > 10000) fillColor =
+                      else if ( density > 8000 ) fillColor = "#28a428";
 		      else if ( density > 4000 ) fillColor = "#32cd32";
 		      else if ( density > 2000 ) fillColor = "#5bd75b";
 		      else if ( density > 1000 ) fillColor = "#84e184";
