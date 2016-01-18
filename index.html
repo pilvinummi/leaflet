@@ -242,7 +242,9 @@
 	  "Väestöruudukko": vaesto
 	};
 
-	L.control.layers(overlays).addTo(map);
+
+	// add layer groups to layer switcher control
+	var controlLayers = L.control.layers(overlays).addTo(map);
 	
 	
 	
