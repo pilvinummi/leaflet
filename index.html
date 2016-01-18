@@ -99,18 +99,18 @@
 
 
 	//Vaesto WFS
-	var areas1 = null;
+	var vaesto = null;
 	var ajax = $.ajax({ 
         	url: vaki_wfs,
 		datatype:"json",
 		jsonCallback: 'getJson',
 		success : function (response) {
-        	  areas1 = L.geoJson(response, {
+        	  vaesto = L.geoJson(response, {
                     style: function (feature) {
                       return {
                     	//radius: 2,
-		        fillColor: "#ff7800",
-		    	color: "#000",
+		        //fillColor: "#ff7800",
+		    	color: "black",
 		    	weight: 1,
 		    	opacity: 1,
 		    	fillOpacity: 0.8
@@ -128,13 +128,13 @@
 	
 	
 	//Viheralueet WFS
-	var areas = null;
+	var viheralueet = null;
 	var ajax = $.ajax({ 
         	url: viheralueet_wfs,
 		datatype:"json",
 		jsonCallback: 'getJson',
 		success : function (response) {
-        	  areas = L.geoJson(response, {
+        	  viheralueet = L.geoJson(response, {
                     style: function (feature) {
                       return {
                         stroke: true,
