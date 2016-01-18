@@ -95,7 +95,8 @@
 	//WFS-tasot
 	var viheralueet_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:hkr_ylre_viheralue&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
 	//var bbxx = map.getBounds().toBBoxString()
-	var vaki_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=WMS:vaki2014_1km_norm&maxFeatures=10&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
+	var bbox = BoundingBox();
+	var vaki_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=WMS:vaki2014_1km_norm&maxFeatures=10&srsName=EPSG:4326&format=json&outputFormat=json&bbox="+bbox+"&format_options=callback:getJson";
 
 
 	/*
