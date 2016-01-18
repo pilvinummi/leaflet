@@ -128,14 +128,6 @@
 		      	fillOpacity: 0.8 
 		      };
 		      
-                      //return {
-                    	//radius: 2,
-		        //fillColor: "#ff7800",
-		    	//color: "black",
-		    	//weight: 1,
-		    	//opacity: 1,
-		    	//fillOpacity: 0.6
-                      //};
                     },
                     onEachFeature: function (feature, layer) {
                       popupOptions = {maxWidth: 200};
@@ -160,11 +152,11 @@
                       var fillColor, 
                       kaytto = feature.properties.kayttotarkoitus;
                       
-                      if ( kaytto = "Asemakaavoitettu viheralue" ) fillColor = "black";
-                      else if ( kaytto = "Kartano- ja huvila-alue" ) fillColor = "green";
-                      else if ( kaytto = "Kesamaja-alue" ) fillColor = "grey";
-                      else if ( kaytto = "Koira-aitaus" ) fillColor = "#1e7b1e";
-                      else if ( kaytto = "Leikkipaikka" ) fillColor = "yellow";
+                      if ( kaytto == "Asemakaavoitettu viheralue" ) fillColor = "black";
+                      else if ( kaytto == "Kartano- ja huvila-alue" ) fillColor = "green";
+                      else if ( kaytto == "Kesamaja-alue" ) fillColor = "grey";
+                      else if ( kaytto == "Koira-aitaus" ) fillColor = "#1e7b1e";
+                      else if ( kaytto == "Leikkipaikka" ) fillColor = "yellow";
                       else if ( kaytto = "Leikkipuisto" ) fillColor = "#28a428";
 		      else if ( kaytto = "Luonnonsuojelualue" ) fillColor = "#32cd32";
 		      else if ( kaytto = "Siirtolapuutarha" ) fillColor = "#5bd75b";
