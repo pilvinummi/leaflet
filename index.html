@@ -215,9 +215,9 @@
 	}).addTo(map);
 	
 	
-	map.on('mousemove', function(e) {
+	map.on('click', function(e) {
 	    filterCircle.setLatLng(e.latlng);
-	    viheralueet_wfs.setFilter(function showAirport(feature) {
+	    viheralueet.setFilter(function showAirport(feature) {
 	        return e.latlng.distanceTo(L.latLng(
 	                feature.geometry.coordinates[1],
 	                feature.geometry.coordinates[0])) < RADIUS;
