@@ -8,35 +8,30 @@
     
   
     <style>
-      body { 
-        margin:0; padding:0; 
-      }
-      
+      html, body {
+	overflow:hidden;
+	height:100%;
+	}
       #map {
         width:100%;
 	height:100%;
 	position:absolute;
 	left:0;	
-      }
-      /*
-      html, body {
-	overflow:hidden;
-	height:100%;
-	}
-      */
+        }
+      
       .btn {
 	  margin:3px;
 	} 
 
       .btn-round { 
-	  font-weight: bold;
-	  width: 19px;
-	  height: 19px;
-	  text-align: center;
-	  padding: 1px 0;
-	  font-size: 13px;
-	  line-height: 0.1;
-	  border-radius: 30px;
+	font-weight: bold;
+	width: 19px;
+	height: 19px;
+	text-align: center;
+	padding: 1px 0;
+	font-size: 13px;
+	line-height: 0.1;
+	border-radius: 30px;
 	}
       
       .sidebar {
@@ -64,8 +59,7 @@
     	float: right;
 	}
       
-      
-      
+     
       /*
       .menu-ui {
  	background:#fff;
@@ -146,7 +140,8 @@
 	
 	
 	//WFS-tasot
-	var viheralueet_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:hkr_ylre_viheralue&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
+	//var viheralueet_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:hkr_ylre_viheralue&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
+	var viheralueet_wfs = "http://geoserver.hel.fi/geoserver/hkr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=hkr:ylre_viheralue&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson"
 	//var vaki_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=WMS:vaki2014_1km_norm&filter=%3CPropertyIsEqualTo%3E%3CPropertyName%3Ekunta%3C/PropertyName%3E%3CLiteral%3E091%3C/Literal%3E%3C/PropertyIsEqualTo%3E&maxFeatures=1000&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
 	var paavo_kartta = "http://geoserv.stat.fi:8080/geoserver/postialue/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=postialue:pno_tilasto_2015&filter=%3CPropertyIsEqualTo%3E%3CPropertyName%3Ekunta%3C/PropertyName%3E%3CLiteral%3E091%3C/Literal%3E%3C/PropertyIsEqualTo%3E&maxFeatures=1000&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
 	//postialue:pno_2015 //postialue:pno_tilasto_2015
