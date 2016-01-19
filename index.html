@@ -68,6 +68,22 @@
 	z-index:80;
 	}
       
+      #map-wrapper {
+    	width: 100%;
+    	height: 500px;
+    	position: relative;
+    	border: 1px solid black;
+	}
+
+      #button-wrapper {
+    	position: absolute;
+    	bottom: 10px;
+	width: 100%;
+	border: 1px solid red;
+	}
+      
+      
+      
       /*
       .menu-ui {
  	background:#fff;
@@ -484,24 +500,21 @@
       }
     </script>
     
-    
-    <div class="container-fluid">
-   	<div id="header">
-  	  <div class="ol-toggle-options">  
+    <div class="span9" style="height:100%">
+    <div id="map-wrapper">
+    	<div id="map"></div>
+  	<div id="button-wrapper">  
 	    <button class="btn btn-primary" title="Sivupalkki" onClick="toggleControlPanel()" href="#toggle">Valikko</button>   
-    	  </div>
-	</div>
-    
-    	<div id='sidebar' class='sidebar' style="display: none;">
-    	  <button class="btn btn-primary" title="Sivupalkki" onClick="toggleControlPanel()" href="#toggle">Sulje valikko</button>
     	</div>
+    </div>
+    
+    	<!--<div id='sidebar' class='sidebar' style="display: none;">
+    	  <button class="btn btn-primary" title="Sivupalkki" onClick="toggleControlPanel()" href="#toggle">Sulje valikko</button>
+    	</div>-->
     </div>
     	
     <!--<nav id='menu-ui' class='menu-ui'></nav>-->
-    <!-- Lisaa kartan halutulla koolla -->
-    <div class="container-fluid">
-	<div id="map">
-    </div>
+   
     <!--<div id="map"></div>-->
     
   </body>
