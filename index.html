@@ -95,6 +95,32 @@
 	//WFS-tasot
 	var viheralueet_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:hkr_ylre_viheralue&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
 	var vaki_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=WMS:vaki2014_1km_norm&filter=%3CPropertyIsEqualTo%3E%3CPropertyName%3Ekunta%3C/PropertyName%3E%3CLiteral%3E091%3C/Literal%3E%3C/PropertyIsEqualTo%3E&maxFeatures=1000&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
+	var paavo_kartta = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:postialue_pno_2015&filter=%3CPropertyIsEqualTo%3E%3CPropertyName%3Ekunta%3C/PropertyName%3E%3CLiteral%3E091%3C/Literal%3E%3C/PropertyIsEqualTo%3E&maxFeatures=1000&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
+	//var paavo_tilasto = 
+
+	//Vaesto WFS
+	//var vaesto = null;
+	var vaesto_wfs = $.ajax({ 
+        	url: paavo_kartta,
+		datatype:"json",
+		jsonCallback: 'getJson',
+		success : function (response) {
+        	  vaesto = L.geoJson(response, {
+                    style: function (feature) {
+		      return {
+		      	color: "#999", 
+		      	weight: 1, 
+		      	fillColor: fillColor, 
+		      	fillOpacity: 0.8 
+		      };
+		      
+                    }
+                  }).addTo(map);
+                }
+	}); 
+
+
+
 
 
 	//Vaesto WFS
@@ -134,7 +160,7 @@
                       "<br><b>Väkimäärä: </b> " + feature.properties.vaesto
                         ,popupOptions);
                     }
-                  }).addTo(map);
+                  });//.addTo(map);
                 }
 	}); 
 	
@@ -208,7 +234,7 @@
 		        click: zoomToFeature
 		      });
                     }
-                  }).addTo(map);
+                  });//.addTo(map);
                 }
 	}); 
 
