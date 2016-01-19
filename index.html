@@ -102,7 +102,7 @@
     </style>
   
     <script>
-    	/*
+    
       //CORS:n aktivointi, mahdollistaa pyyntöjen tekemisen verkkopiirin ulkopuolelta (domain)
     	(function() {
 	  var cors_api_host = 'cors-anywhere.herokuapp.com';
@@ -120,8 +120,8 @@
 	    return open.apply(this, args);
 	  };
 	})();
-    */
     
+   
       function init() {
     	
     	//BASEMAP
@@ -346,6 +346,7 @@
 	//map.onclick -funktion rakentelua...
 	function onMapClick() { //(e), saadaan klikatun kohteen tietoja
 		alert("testi");
+		var marker = new L.marker(e).addTo(map);
 	}
 
 	map.on('click', onMapClick);
