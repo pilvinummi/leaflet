@@ -165,7 +165,7 @@
                       layer.on({
                       	mousemove: mousemove,
           	        mouseout: mouseout, 
-		        click: zoomToFeature
+		        //click: zoomToFeature
 		      });
                     }
                   }).addTo(map);
@@ -212,6 +212,14 @@
                       "<br><b>Asuntojen määrä: </b> " + feature.properties.ra_asunn +
                       "<br><b>Asumisväljyys: </b> " + feature.properties.te_as_valj
                         ,popupOptions);
+                        
+                      //Mahdollistaa kohteen korostuksen ja kohdetta klikkaamalla siihen kohdistuksen  
+                      layer.on({
+                        //mousemove: mousemove,
+          	        //mouseout: mouseout, 
+		        click: zoomToFeature
+		      });    
+                        
                     }
                   }).addTo(map);
                 }
