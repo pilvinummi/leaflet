@@ -344,11 +344,11 @@
 
 	
 	//map.onclick -funktion rakentelua...
-	map.onclick = function() {
+	function onMapClick() { //(e), saadaan klikatun kohteen tietoja
 		alert("testi");
-		
 	}
-	
+
+	map.on('click', onMapClick);
 	
 	/*
 	//WMS-tasot
