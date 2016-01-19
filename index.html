@@ -107,6 +107,20 @@
 		success : function (response) {
         	  paavo = L.geoJson(response, {
                     style: function (feature) {
+                      var fillColor, 
+                      density = feature.properties.he_kika;
+                      
+                      //if ( density > 14000) fillColor =
+                      if ( density > 12000) fillColor = "#1e7b1e";
+                      //else if ( density > 10000) fillColor =
+                      else if ( density > 8000 ) fillColor = "#28a428";
+		      else if ( density > 4000 ) fillColor = "#32cd32";
+		      else if ( density > 2000 ) fillColor = "#5bd75b";
+		      else if ( density > 1000 ) fillColor = "#84e184";
+		      else if ( density > 500 ) fillColor = "#adebad";
+		      else if ( density > 0 ) fillColor = "#d6f5d6";
+		      else fillColor = "#ebfaeb";  // no data
+		      
 		      return {
 		      	color: "black",
 		      	weight: 1
@@ -115,8 +129,8 @@
                     },
                     onEachFeature: function (feature, layer) {
                       popupOptions = {maxWidth: 200};
-                      layer.bindPopup("<b>Kuntatunnus: </b> " + feature.properties.kunta
-                      //"<br><b>Väkimäärä: </b> " + feature.properties.vaesto
+                      layer.bindPopup("<b>Kuntatunnus: </b> " + feature.properties.kunta + 
+                      "<br><b>Väkimäärä: </b> " + feature.properties.he_kika
                         ,popupOptions);
                     }
                   }).addTo(map);
