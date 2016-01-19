@@ -100,18 +100,15 @@
 
 	//Vaesto WFS
 	//var vaesto = null;
-	var vaesto_wfs = $.ajax({ 
+	var paavo_wfs = $.ajax({ 
         	url: paavo_kartta,
 		datatype:"json",
 		jsonCallback: 'getJson',
 		success : function (response) {
-        	  vaesto = L.geoJson(response, {
+        	  paavo = L.geoJson(response, {
                     style: function (feature) {
 		      return {
-		      	color: "#999", 
-		      	weight: 1, 
-		      	fillColor: fillColor, 
-		      	fillOpacity: 0.8 
+		      	color: "#999"
 		      };
 		      
                     }
