@@ -108,7 +108,7 @@
         	  paavo = L.geoJson(response, {
                     style: function (feature) {
                       var fillColor, 
-                      density = feature.properties.he_vakiy;
+                      density = feature.properties.he_naiset + feature.properties.he_miehet;
                       
                       //if ( density > 14000) fillColor =
                       if ( density > 12000) fillColor = "#1e7b1e";
