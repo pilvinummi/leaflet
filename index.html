@@ -134,7 +134,7 @@
 			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
 			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
 		id: 'mapbox.streets'
-	}).addTo(basemap);//.addTo(map);
+	}).addTo(map);
 	
 	
 	
@@ -215,7 +215,7 @@
 		        //click: zoomToFeature
 		      });
                     }
-                  }).addTo(wfs);//.addTo(map);
+                  });//.addTo(map);
                 }
 	}); 
 
@@ -268,7 +268,7 @@
 		      });    
                         
                     }
-                  }).addTo(wfs); //.addTo(map);
+                  }); //.addTo(map);
                 }
 	}); 
 
@@ -351,16 +351,13 @@
 
 	map.on('click', onMapClick);
 	
-	//Layerswitcher
-	var baselayers = {
-	  "Basemap": basemap
-	};
-	
-	var overlays = {
-	  "Interesting places": wfs
-	};
 
-	L.control.layers(baselayers, overlays).addTo(map);
+	L.control.layers({
+    	  'Mapbox Light': L.mapbox.tileLayer('mapbox.light')
+	}, {
+    	  'Viheralueet': viheralueet,
+    	  'Väestö': paavo
+	}).addTo(map);
 	
 	
 	/*
