@@ -352,13 +352,6 @@
 	map.on('click', onMapClick);
 	
 
-	L.control.layers({
-    	  'Taustakartta': basemap
-	}, {
-    	  'Viheralueet': viheralueet_layer,
-    	  'Väestö': paavo_layer
-	}).addTo(map);
-	
 	
 	/*
 	//WMS-tasot
@@ -379,19 +372,19 @@
     		format: 'image/png',
     		transparent: true
 	});
-	
+	*/
 	
 	
 	//LAYERTOGGLER
-	addLayer(rakennukset_wms, 'Rakennukset', 1);
-	addLayer(vaki_wms, 'Väkimäärä', 2);
-	addLayer(aurinko_wms, 'Aurinkopaneelit', 3);
-	addLayer(viheralueet, 'Viheralueet', 4);
-	addLayer(vaki, 'Väestöruudukko', 5);
+	//addLayer(rakennukset_wms, 'Rakennukset', 1);
+	//addLayer(vaki_wms, 'Väkimäärä', 2);
+	//addLayer(aurinko_wms, 'Aurinkopaneelit', 3);
+	addLayer(viheralueet, 'Viheralueet', 1);
+	addLayer(paavo, 'Väestöruudukko', 2);
 	
-	map.removeLayer(rakennukset_wms);
-	map.removeLayer(vaki_wms);
-	map.removeLayer(aurinko_wms);
+	//map.removeLayer(rakennukset_wms);
+	//map.removeLayer(vaki_wms);
+	//map.removeLayer(aurinko_wms);
 
   	function addLayer(layer, name, zIndex) {
 	    layer
@@ -420,7 +413,7 @@
 	    
 	    layers.appendChild(link);
 	}
-	*/
+	
 	
 	//WMS-tason popup-scripti
 	/*
