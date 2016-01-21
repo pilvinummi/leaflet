@@ -272,53 +272,7 @@
                 }
 	}); 
 
-
-
-	/*
-	//Vaesto WFS, sailytetaan tata varalta
-	//var vaesto = null;
-	var vaesto_wfs = $.ajax({ 
-        	url: vaki_wfs,
-		datatype:"json",
-		jsonCallback: 'getJson',
-		success : function (response) {
-        	  vaesto = L.geoJson(response, {
-                    style: function (feature) {
-                      var fillColor, 
-                      density = feature.properties.vaesto;
-                      
-                      //if ( density > 14000) fillColor =
-                      if ( density > 12000) fillColor = "#1e7b1e";
-                      //else if ( density > 10000) fillColor =
-                      else if ( density > 8000 ) fillColor = "#28a428";
-		      else if ( density > 4000 ) fillColor = "#32cd32";
-		      else if ( density > 2000 ) fillColor = "#5bd75b";
-		      else if ( density > 1000 ) fillColor = "#84e184";
-		      else if ( density > 500 ) fillColor = "#adebad";
-		      else if ( density > 0 ) fillColor = "#d6f5d6";
-		      else fillColor = "#ebfaeb";  // no data
-		      
-		      return {
-		      	color: "#999", 
-		      	weight: 1, 
-		      	fillColor: fillColor, 
-		      	fillOpacity: 0.8 
-		      };
-		      
-                    },
-                    onEachFeature: function (feature, layer) {
-                      popupOptions = {maxWidth: 200};
-                      layer.bindPopup("<b>Kuntatunnus: </b> " + feature.properties.kunta + 
-                      "<br><b>Väkimäärä: </b> " + feature.properties.vaesto
-                        ,popupOptions);
-                    }
-                  }).addTo(map);
-                }
-	}); 
-	*/
 	
-	
-
 	function zoomToFeature(e) {
 	  map.fitBounds(e.target.getBounds());
 	}
@@ -379,8 +333,8 @@
 	//addLayer(rakennukset_wms, 'Rakennukset', 1);
 	//addLayer(vaki_wms, 'Väkimäärä', 2);
 	//addLayer(aurinko_wms, 'Aurinkopaneelit', 3);
-	addLayer(viheralueet, 'Viheralueet', 1);
-	addLayer(paavo, 'Väestöruudukko', 2);
+	addLayer(viheralueet_layer, 'Viheralueet', 1);
+	addLayer(paavo_layer, 'Väestöruudukko', 2);
 	
 	//map.removeLayer(rakennukset_wms);
 	//map.removeLayer(vaki_wms);
