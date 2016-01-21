@@ -134,7 +134,7 @@
 			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
 			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
 		id: 'mapbox.streets'
-	}).addTo(map);
+	}).addTo(basemap);//.addTo(map);
 	
 	
 	
@@ -215,7 +215,7 @@
 		        //click: zoomToFeature
 		      });
                     }
-                  }).addTo(coolPlaces);//.addTo(map);
+                  }).addTo(wfs);//.addTo(map);
                 }
 	}); 
 
@@ -268,7 +268,7 @@
 		      });    
                         
                     }
-                  }).addTo(coolPlaces); //.addTo(map);
+                  }).addTo(wfs); //.addTo(map);
                 }
 	}); 
 
@@ -351,11 +351,16 @@
 
 	map.on('click', onMapClick);
 	
+	//Layerswitcher
+	var baselayers = {
+	  "Basemap": basemap
+	};
+	
 	var overlays = {
-	  "Interesting places": coolPlaces
+	  "Interesting places": wfs
 	};
 
-	L.control.layers(overlays).addTo(map);
+	L.control.layers(baselayers, overlays).addTo(map);
 	
 	
 	/*
