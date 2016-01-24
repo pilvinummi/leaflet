@@ -134,8 +134,8 @@
                     style: function (feature) {
                       var fillColor, 
                       vaki = feature.properties.he_vakiy;
-                      ala = feature.properties.pinta-ala / 1000000; // pinta-ala neliökilometreinä
-                      astiheys = vaki / ala; // asukastiheys as/km2
+                      ala = feature.properties.pinta-ala; // pinta-ala neliökilometreinä
+                      astiheys = vaki / (ala / 1000000); // asukastiheys as/km2
                       
                       //if ( vaki > 22000) fillColor =
                       if ( astiheys > 3000) fillColor = "#990000";
