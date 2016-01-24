@@ -157,7 +157,7 @@
                     onEachFeature: function (feature, layer) {
                       popupOptions = {maxWidth: 200};
                       layer.bindPopup("<b>Alueen nimi: </b> " + feature.properties.nimi + 
-                      "<br><b>Pinta-ala: </b> " + (feature.properties.pinta_ala / 1000000) + " k-m2"
+                      "<br><b>Pinta-ala: </b> " + feature.properties.pinta_ala + " m2" +
                       "<br><b>Väkimäärä: </b> " + feature.properties.he_vakiy +
                       "<br><b>Asuntojen määrä: </b> " + feature.properties.ra_asunn +
                       "<br><b>Asumisväljyys: </b> " + feature.properties.te_as_valj
