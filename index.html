@@ -133,9 +133,9 @@
         	  paavo = L.geoJson(response, {
                     style: function (feature) {
                       var fillColor, 
-                      var vaki = feature.properties.he_vakiy;
-                      var ala = feature.properties.pinta-ala / 1000000; // pinta-ala neliökilometreinä
-                      var astiheys = vaki / ala; // asukastiheys as/km2
+                      vaki = feature.properties.he_vakiy;
+                      ala = feature.properties.pinta-ala / 1000000; // pinta-ala neliökilometreinä
+                      astiheys = vaki / ala; // asukastiheys as/km2
                       
                       //if ( vaki > 22000) fillColor =
                       if ( astiheys > 3000) fillColor = "#990000";
