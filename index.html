@@ -63,8 +63,7 @@
                       var fillColor, 
                       kaytto = feature.properties.kayttotarkoitus;
                       
-                      //if ( kaytto == "Asemakaavoitettu viheralue" || kaytto == "Ulkoilumetsä" ) fillColor = "#00441b";
-                      if ( kaytto.indexOf("Asemakaavoitettu") > -1 ) fillColor = "#00441b";
+                      if ( kaytto == "Asemakaavoitettu viheralue" || kaytto == "Ulkoilumetsä" ) fillColor = "#00441b";
                       else if ( kaytto == "Kartano- ja huvila-alue" ) fillColor = "#663366";
                       else if ( kaytto == "Kesamaja-alue" || kaytto == "Siirtolapuutarha" || kaytto == "Viljelypalsta" || || kaytto == "Viljelypalsta-alue") fillColor = "#996600";
                       else if ( kaytto == "Koira-aitaus" ) fillColor = "#cc6600";
