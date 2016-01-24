@@ -133,7 +133,9 @@
         	  paavo = L.geoJson(response, {
                     style: function (feature) {
                       var fillColor, 
-                      vaki = feature.properties.he_vakiy;
+                      vaki = feature.properties.he_vakiy,
+                      ala = feature.properties.pinta_ala / 1000000,
+                      astiheys = vaki / ala;
                       
                       //if ( vaki > 22000) fillColor =
                       if ( vaki > 24000) fillColor = "#990000";
@@ -157,7 +159,7 @@
                     onEachFeature: function (feature, layer) {
                       popupOptions = {maxWidth: 200};
                       layer.bindPopup("<b>Alueen nimi: </b> " + feature.properties.nimi + 
-                      "<br><b>Pinta-ala: </b> " + (feature.properties.pinta_ala / 1000000) + " m2" +
+                      "<br><b>Pinta-ala: </b> " + feature.properties.pinta_ala + " m2" +
                       "<br><b>Väkimäärä: </b> " + feature.properties.he_vakiy +
                       "<br><b>Asuntojen määrä: </b> " + feature.properties.ra_asunn +
                       "<br><b>Asumisväljyys: </b> " + feature.properties.te_as_valj
