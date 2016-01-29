@@ -82,5 +82,10 @@ html, body {
 	z-index:80;
 	}
       
+      #sidebar H1{
+      	text-align:left;
+      	font-size:medium;
+      	
+      }
       
       
