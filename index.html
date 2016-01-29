@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-  <meta charset="UTF-8">
-  <title>Leaflet</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href='stylesheets/vihreahelsinki.css' rel='stylesheet' />
-  
+    <meta charset="UTF-8">
+    <title>Leaflet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <script>
     
       //CORS:n aktivointi, mahdollistaa pyyntöjen tekemisen verkkopiirin ulkopuolelta (domain)
@@ -30,8 +29,24 @@
       function init() {
     	
     	//BASEMAP
-  	var map = L.map('map').setView([60.1708, 24.9375], 13);
-  	var layers = document.getElementById('menu-ui');
+  	var map = L.map('map', {
+  		center: new L.LatLng(60.1708, 24.9375),
+		zoom: 13,
+		minZoom: 11,
+		maxZoom: 18,
+  	});
+  	
+  	
+  	//WFS-tasot lisataan tasot grouppiin ja luodaan layerControl muuttuja, johon voidaan lisata tasoja ja ominaisuuksia
+	var tasot = new L.LayerGroup();
+	var layersControl = L.control.layers();
+	
+	//Layer control ja scale
+	L.control.scale().addTo(map);
+	layersControl.addOverlay(tasot,'Tasot');
+	layersControl.setPosition("bottomleft");
+	layersControl.addTo(map);
+  	
   	
   	var basemap = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoicGVzb25ldDEiLCJhIjoiY2lqNXJua2k5MDAwaDI3bTNmaGZqc2ZuaSJ9.nmLkOlsQKzwMir9DfmCNPg', {
 		maxZoom: 18,
@@ -42,23 +57,17 @@
 	}).addTo(map);
 	
 	
-	
 	//WFS-tasot
-	//var viheralueet_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=web_map_project:hkr_ylre_viheralue&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
 	var viheralueet_wfs = "http://geoserver.hel.fi/geoserver/hkr/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=hkr:ylre_viheralue&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson"
-	//var vaki_wfs = "http://130.233.249.20:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=WMS:vaki2014_1km_norm&filter=%3CPropertyIsEqualTo%3E%3CPropertyName%3Ekunta%3C/PropertyName%3E%3CLiteral%3E091%3C/Literal%3E%3C/PropertyIsEqualTo%3E&maxFeatures=1000&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
 	var paavo_kartta = "http://geoserv.stat.fi:8080/geoserver/postialue/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=postialue:pno_tilasto_2015&filter=%3CPropertyIsEqualTo%3E%3CPropertyName%3Ekunta%3C/PropertyName%3E%3CLiteral%3E091%3C/Literal%3E%3C/PropertyIsEqualTo%3E&maxFeatures=1000&srsName=EPSG:4326&format=json&outputFormat=json&format_options=callback:getJson";
-	//postialue:pno_2015 //postialue:pno_tilasto_2015
-	var coolPlaces = new L.LayerGroup();
 
 	//Viheralueet WFS
-	//var viheralueet = null;
 	var viheralueet_layer = $.ajax({ 
         	url: viheralueet_wfs,
 		datatype:"json",
 		jsonCallback: 'getJson',
 		success : function (response) {
-        	  viheralueet = L.geoJson(response, {
+        	  var viheralueet = L.geoJson(response, {
                     style: function (feature) {
                       var fillColor, 
                       kaytto = feature.properties.kayttotarkoitus;
@@ -121,14 +130,12 @@
 		        //click: zoomToFeature
 		      });
                     }
-                  }).addTo(map);
+                  }).addTo(tasot);//.addTo(map);
                 }
 	}); 
 
 
-
 	//Paavo WFS
-	//var paavo = null;
 	var paavo_layer = $.ajax({ 
         	url: paavo_kartta,
 		datatype:"json",
@@ -178,11 +185,14 @@
 		      });    
                         
                     }
-                  }).addTo(map);
+                  }).addTo(tasot);//.addTo(map);
                 }
 	}); 
-
 	
+	
+	
+	
+	//Tasojen funktioita: kohteeseen zoomaus ja kohteen korostus
 	function zoomToFeature(e) {
 	  map.fitBounds(e.target.getBounds());
 	}
@@ -206,115 +216,110 @@
           viheralueet.resetStyle(e.target);
   	}
 
-	
-	//map.onclick -funktion rakentelua...
-	/*
-	function onMapClick(e) { //(e), saadaan klikatun kohteen tietoja
-		alert("Klikkasit karttaa, hienoa! ;)");
-		//var marker = new L.marker(e).addTo(map);
-	}
 
-	map.on('click', onMapClick);
-	*/
 
+	//Funktion avulla piste voidaan kerran lisata kartalle
+	function addpoint() {
+	  map.once('click', function(ev) {
+	    var coord = ev.latlng;
 	
-	/*
-	//WMS-tasot
-	var rakennukset_wms = L.tileLayer.wms("http://130.233.249.20:8080/geoserver/WMS/wms", {
-		layers: 'WMS:Rakennukset',
-    		format: 'image/png',
-    		transparent: true
-	}).addTo(map);
-	
-	var vaki_wms = L.tileLayer.wms("http://130.233.249.20:8080/geoserver/WMS/wms", {
-		layers: 'WMS:vaki2014_1km',
-    		format: 'image/png',
-    		transparent: true
-	});
-
-	var aurinko_wms = L.tileLayer.wms("http://130.233.249.20:8080/geoserver/WMS/wms", {
-		layers: 'WMS:aurinkosahko_paneeli',
-    		format: 'image/png',
-    		transparent: true
-	});
-	*/
-	
-	/*
-	//LAYERTOGGLER
-	//addLayer(rakennukset_wms, 'Rakennukset', 1);
-	//addLayer(vaki_wms, 'Väkimäärä', 2);
-	//addLayer(aurinko_wms, 'Aurinkopaneelit', 3);
-	addLayer(viheralueet_layer, 'Viheralueet', 1);
-	addLayer(paavo_layer, 'Väestöruudukko', 2);
-	
-	//map.removeLayer(rakennukset_wms);
-	//map.removeLayer(vaki_wms);
-	//map.removeLayer(aurinko_wms);
-
-  	function addLayer(layer, name, zIndex) {
-	    layer
-	        .setZIndex(zIndex)
-	        .addTo(map);
-	
-	    // Create a simple layer switcher that
-	    // toggles layers on and off.
-	    var link = document.createElement('a');
-	        link.href = '#';
-	        link.className = 'active';
-	        link.innerHTML = name;
-	
-	    link.onclick = function(e) {
-	        e.preventDefault();
-	        e.stopPropagation();
-	
-	        if (map.hasLayer(layer)) {
-	            map.removeLayer(layer);
-	            this.className = '';
-	        } else {
-	            map.addLayer(layer);
-	            this.className = 'active';
-	        }
+	    //Muotoilun sateen koko pitaisi saada muutettua sellaiseksi, etta kayttaja voi sen valita
+	    var geojsonstyle = {
+	      //radius: 100,
+	      fillColor: "#ff7800",
+	      color: "#000",
+	      weight: 1,
+	      opacity: 1,
+	      fillOpacity: 0.8
 	    };
-	    
-	    layers.appendChild(link);
-	}
-	*/
 	
-	//WMS-tason popup-scripti
-	/*
-	ms_url="http://130.233.249.20:8080/geoserver/WMS/wms";
-	map.addEventListener('click', Identify);
+	    var geojson = {
+	      "type": "Feature",
+	      "properties": {
+	        "name": "geojson piste"
+	      },
+	      "geometry": {
+	        "type": "Point",
+	        "coordinates": [coord.lng, coord.lat]
+	      }
+	    };
 	
-	function Identify(e) 
-	{
-	    // set parameters needed for GetFeatureInfo WMS request
-	    var BBOX = map.getBounds().toBBoxString();
-	    var WIDTH = map.getSize().x;
-	    var HEIGHT = map.getSize().y;
-	    var X = map.layerPointToContainerPoint(e.layerPoint).x;
-	    var Y = map.layerPointToContainerPoint(e.layerPoint).y;
-	     // compose the URL for the request
-	    var URL = ms_url + '?SERVICE=WMS&VERSION=1.1.0&REQUEST=GetFeatureInfo&LAYERS=WMS:Rakennukset&QUERY_LAYERS=WMS:Rakennukset&BBOX='+BBOX+'&FEATURE_COUNT=1&HEIGHT='+HEIGHT+'&WIDTH='+WIDTH+'&INFO_FORMAT=text%2Fhtml&SRS=EPSG%3A4326&X='+X+'&Y='+Y;
-	
-	    //send the asynchronous HTTP request using jQuery $.ajax
-	    $.ajax({
-	        url: URL,
-	        dataType: "html",
-	        type: "GET",
-	        success: function(data) 
-	        {
-	            var popup = new L.Popup
-	            ({
-	                maxWidth: 300
-	            });
-	
-	            popup.setContent(data);
-	            popup.setLatLng(e.latlng);
-	            map.openPopup(popup);
-	        }
+	    var pisteet = L.geoJson(geojson, {
+	      pointToLayer: function (feature, latlng) {
+	        return L.circle(latlng, radius, geojsonstyle); //{radius: 100});
+  	      }
+	    }).addTo(map);
+	  
+	    var removeButton = document.getElementById('remove');
+	    removeButton.addEventListener('click',function(event) {
+	      pisteet.clearLayers();
 	    });
+	  
+	  });	
+		
 	}
+	
+	
+	//Bufferikoon valittavaksi tarvittavat eventlistenerit
+	box_150.addEventListener('change', function() {
+	  var checked = this.checked;
+	  if (checked) {
+	    radius = 150
+	    addpoint();
+	  } else {
+	    //tassa vaiheessa ei pitaisi pystya luomaan pisteita kartalle
+	  }
+	});
+	
+	box_300.addEventListener('change', function() {
+	  var checked = this.checked;
+	  if (checked) {
+	    radius = 300
+	    addpoint();
+	  } else {
+	    //tassa vaiheessa ei pitaisi pystya luomaan pisteita kartalle
+	  }
+	});
+	
+	
+	
+	//Tama scripti hoitaa sen, etta yksi laatikoista voi vain olla kerrallaan valittuna
+	$("input:checkbox").on('click', function() {
+	  var $box = $(this);
+	  if ($box.is(":checked")) {
+	    var group = "input:checkbox[name='" + $box.attr("name") + "']";
+	    $(group).prop("checked", false);
+	    $box.prop("checked", true);
+	  } else {
+	    $box.prop("checked", false);
+	  }
+	});
+	
+	
+	//Legendan koodia...
+	/*
+	var legend = L.control({position: 'bottomright'});
+
+	legend.onAdd = function (map) {
+	
+	    var div = L.DomUtil.create('div', 'info legend'),
+	        grades = [0, 10, 20, 50, 100, 200, 500, 1000],
+	        labels = [];
+	
+	    // loop through our density intervals and generate a label with a colored square for each interval
+	    for (var i = 0; i < grades.length; i++) {
+	        div.innerHTML +=
+	            '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+	            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+	    }
+	
+	    return div;
+	};
+	
+	legend.addTo(map);
 	*/
+	
+	
 	
       }
       
@@ -331,15 +336,18 @@
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
     
+    <!--ESRI-leaflet scripti -->
+    <script src="https://pesonet1.github.io/Leaflet/esri-leaflet.js"></script>
+    
+    <!-- jQuery scriptit -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    
     <!-- Bootstarp scriptit -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     
-    <!-- jQuery scriptit -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-   
-    <!--ESRI-leaflet scripti -->
-    <script src="https://pesonet1.github.io/Leaflet/esri-leaflet.js"></script>
+    <!-- CSS -->
+    <link href='vihreahelsinki.css' rel='stylesheet' />
     
     
     <!-- Sivupalkin piilotus -->
@@ -356,18 +364,35 @@
     </script>
     
     <div class="span9" style="height:100%">
-    <div id="map-wrapper">
+      <div id="map-wrapper">
     	<div id="map"></div>
   	<div id="button-wrapper">  
-	    <button class="btn btn-primary" title="Sivupalkki" onClick="toggleControlPanel()" href="#toggle">Näytä valikko</button>   
+	    <button class="btn btn-primary" title="Sivupalkki" onClick="toggleControlPanel()" href="#toggle">Valikko</button>   
     	</div>
-    </div>
+      </div>
     
-    	<div id='sidebar' class='sidebar' style="display: none;">
-    	  <button class="btn btn-primary" title="Sivupalkki" onClick="toggleControlPanel()" href="#toggle">Sulje valikko</button>
-    	  <h1>Vihreä Helsinki?</h1>
-    	  <p>Helsingin viheralueet ja asukastiheys kartalla.</p>
-    	</div>
+      <div id='sidebar' class='sidebar' style="display: none;">
+    	<button class="btn btn-primary" title="Sivupalkki" onClick="toggleControlPanel()" href="#toggle">Sulje valikko</button>
+    	  
+    	<br>
+    	
+    	<h1>Vihreä Helsinki?</h1>
+    	<p>Helsingin viheralueet ja asukastiheys kartalla.</p>
+    	
+    	<br>
+    	  
+    	<button id="remove" class="btn btn-primary">Poista piste</button>
+    	  
+    	<br>
+    	<br>
+ 
+    	<label><input type="checkbox" id="box_150" value="1" name="fooby[1][]"/> 150m bufferi</label>
+
+    	<br>
+    	
+	<label><input type="checkbox" id="box_300" value="1" name="fooby[1][]"/> 300m bufferi</label>
+    	   
+      </div>
     </div>
     	
     <nav id='menu-ui' class='menu-ui'></nav>
