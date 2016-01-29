@@ -85,7 +85,11 @@ html, body {
       #sidebar H1{
       	text-align:left;
       	font-size:medium;
-      	
+      	font-weight:bold;
       }
-      
+
+      #sidebar P{
+      	text-align:left;
+      	font-size:small;
+      }      
       
